@@ -2,11 +2,8 @@
 
 [![CircleCI](https://circleci.com/gh/anketola/ohtu-mini.svg?style=svg)](https://circleci.com/gh/anketola/ohtu-mini)
 
-# testi jes
-
-test123
-
-Test abc
+Definition of Done:
+https://docs.google.com/document/d/11sFet8RXvsOuduLlZrJaglBEncGL8m9L9uRJw0mcQMA/edit
 
 Backlogin linkki:
 https://docs.google.com/spreadsheets/d/1w9VKrFW_TY9B6ujOGc0o4PbNxNm2tUUOI-F3fBlMWJo/edit?usp=sharing
