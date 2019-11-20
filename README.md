@@ -10,6 +10,4 @@ test123
 Test abc
 
 Backlogin linkki:
-https://github.com/anketola/ohtu-mini/blob/master/Backlog%20of%20mergehell.xlsx
-
-
+https://docs.google.com/spreadsheets/d/1w9VKrFW_TY9B6ujOGc0o4PbNxNm2tUUOI-F3fBlMWJo/edit?usp=sharing
