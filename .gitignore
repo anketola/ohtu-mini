@@ -1,3 +1,5 @@
+*.db
+
 /.nb-gradle/
 .classpath
 .gradle/
