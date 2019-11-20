@@ -1,5 +1,7 @@
 # ohtu-mini
 
+[![CircleCI](https://circleci.com/gh/anketola/ohtu-mini.svg?style=svg)](https://circleci.com/gh/anketola/ohtu-mini)
+
 # testi jes
 
 test123
