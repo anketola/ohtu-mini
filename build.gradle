@@ -34,7 +34,7 @@ repositories {
 mainClassName='ohtuminiprojekti.Main'
 
 checkstyle {
-	toolVersion = "8.22"
+	toolVersion = "8.26"
 }
 
 dependencies {
@@ -68,7 +68,6 @@ dependencies {
     testCompile "info.cukes:cucumber-junit:" + cucumberVersion
     testCompile "info.cukes:cucumber-spring:" + cucumberVersion
     testCompile "junit:junit:" + junitVersion 
-    checkstyle("io.spring.javaformat:spring-javaformat-checkstyle:0.0.15")
 }
 
 test {
