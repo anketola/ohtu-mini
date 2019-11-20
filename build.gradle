@@ -12,6 +12,7 @@ apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'application'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'checkstyle'
 
 logging.captureStandardOutput LogLevel.QUIET
 
@@ -31,6 +32,10 @@ repositories {
 }
     
 mainClassName='ohtuminiprojekti.Main'
+
+checkstyle {
+	toolVersion = "8.22"
+}
 
 dependencies {
 
@@ -63,6 +68,7 @@ dependencies {
     testCompile "info.cukes:cucumber-junit:" + cucumberVersion
     testCompile "info.cukes:cucumber-spring:" + cucumberVersion
     testCompile "junit:junit:" + junitVersion 
+    checkstyle("io.spring.javaformat:spring-javaformat-checkstyle:0.0.15")
 }
 
 test {
