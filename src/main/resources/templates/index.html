@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Otsikko</title>
+    </head>
+
+    <body>
+        <h1>Kirjahomma</h1>
+
+        
+    <form method="POST" th:action="@{/books/create}">
+    Kirjan nimi <br />
+    <input type="text" name="title"><br />
+    Kirjailija <br />
+    <input type="text" name="author"><br />
+    <input type="submit" value="Lisää uusi kirja">
+
+    </form>
+    <div>
+        <br />
+        <a th:href="@{/books/list}">Listaa lisätyt kirjat</a>
+    </div>
+    </body>
+</html>

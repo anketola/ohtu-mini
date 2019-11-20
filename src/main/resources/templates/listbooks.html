@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Otsikko</title>
+    </head>
+
+    <body>
+        <h1>Kirjalista</h1>
+        <table>
+            <tr>
+                <td>Nimi</td>
+                <td>Kirjailija</td>
+            </tr>
+            <tr th:each="book: ${books}">
+                <strong>
+                <td th:text=${book.title}></td>
+                <td th:text=${book.author}></td>
+                </strong>
+            </tr>
+        </table>
+        
+        <a th:href="@{/}">Lisää uusi kirja</a>
+    </body>
+</html>

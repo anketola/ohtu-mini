@@ -1,7 +1,7 @@
 package ohtuminiprojekti;
 
 import ohtuminiprojekti.dao.BookRepository;
-import ohtuminiprojekti.domain.Book;
+import ohtuminiprojekti.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,26 +14,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class Controllers {
 
     @Autowired
-    private BookRepository bookRepository;
+    BookService bookService;
     
     @PostMapping("/books/create")
     public String createBook(@RequestParam String title, @RequestParam String author) {
-        Book newBook = new Book();
-        newBook.setTitle(title);
-        newBook.setAuthor(author);
-        bookRepository.save(newBook);
+        bookService.newBook(title, author);
     return "redirect:/";
     }
     
     @GetMapping("/books/list")
     public String listBooks(Model model) {
-        model.addAttribute("books", bookRepository.findAll());
+        model.addAttribute("books", bookService.allBooks());
     return "listbooks";
     }
     
     @GetMapping("/")
-    @ResponseBody
     public String indexRoot() {
-        return "yay";
+        return "index";
     }
 }
