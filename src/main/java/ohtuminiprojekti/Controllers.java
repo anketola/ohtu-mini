@@ -19,13 +19,18 @@ public class Controllers {
     @PostMapping("/books/create")
     public String createBook(@RequestParam String title, @RequestParam String author) {
         bookService.newBook(title, author);
-    return "redirect:/";
+    return "redirect:/books/list";
     }
     
     @GetMapping("/books/list")
     public String listBooks(Model model) {
         model.addAttribute("books", bookService.allBooks());
     return "listbooks";
+    }
+    
+    @GetMapping("/books/create")
+    public String newBook() {
+        return "newbook";
     }
     
     @GetMapping("/")

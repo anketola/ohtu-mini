@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Otsikko</title>
+    <head th:replace="layout :: head">
+        <title></title>
     </head>
-
     <body>
+        <header th:replace="layout :: header"></header>
         <h1>Kirjalista</h1>
-        <table>
-            <tr>
-                <td>Nimi</td>
-                <td>Kirjailija</td>
-            </tr>
-            <tr th:each="book: ${books}">
-                <strong>
-                <td th:text=${book.title}></td>
-                <td th:text=${book.author}></td>
-                </strong>
-            </tr>
+        <table class="table" id="myTable">
+            <thead>
+                <tr>
+                    <th style="width: 10%">Nimi</th>
+                    <th style="width: 10%">Kirjailija</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="book: ${books}" style="line-height: 50px; min-height: 50px; height: 50px">
+                    <strong>
+                        <td style="position:relative;"><span style="width: 90%; overflow: auto; position: absolute; top: -18px;" th:text=${book.title}></span></td>
+                        <td style="position:relative;"><span style="width: 90%; overflow: auto; position: absolute; top: -18px;" th:text=${book.author}></span></td>
+                    </strong>
+                </tr>
+            </tbody>
         </table>
-        
-        <a th:href="@{/}">Lisää uusi kirja</a>
+        <footer th:replace="layout :: footer"></footer>
+        <script>
+            $(document).ready(function () {
+                $('#myTable').DataTable({scrollY: 440});
+            });
+        </script>
     </body>
 </html>
