@@ -11,9 +11,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
+import static org.junit.Assert.assertTrue;
+
 public class Stepdefs {
 
   WebDriver driver;
+  String baseUrl = "http://localhost:8080";
 
   public Stepdefs() {
     File file;
@@ -54,9 +57,27 @@ public class Stepdefs {
 
   @Then("^\"([^\"]*)\" is shown$")
   public void is_shown(String arg1) throws Throwable {
-    Assert.assertTrue(driver.findElement(By.tagName("body"))
+    assertTrue(driver.findElement(By.tagName("body"))
         .getText().contains(arg1));
   }
+
+  @Given("^command save book is selected$")
+  public void command_save_book_is_selected() throws Throwable {
+    driver.get(baseUrl);
+    clickLinkWithText("Lisää kirja");
+  }
+
+  @When("^title \"([^\"]*)\" and author \"([^\"]*)\" are entered$")
+  public void title_and_author_are_entered(String title, String author) throws Throwable {
+    enterBookInformation(title, author);
+  }
+
+  @Then("^book is saved$")
+  public void book_is_saved() throws Throwable {
+    pageHasContent("Kirjalista");
+    pageHasContent("Spaghetti Code");
+  }
+
 
   private void clickLinkWithText(String text) {
     int trials = 0;
@@ -69,6 +90,19 @@ public class Stepdefs {
         System.out.println(e.getStackTrace());
       }
     }
+  }
+
+  private void enterBookInformation(String title, String author) {
+    WebElement element = driver.findElement(By.name("title"));
+    element.sendKeys(title);
+    element = driver.findElement(By.name("author"));
+    element.sendKeys(author);
+    element = driver.findElement(By.name("bookSubmit"));
+    element.submit();
+  }
+
+  private void pageHasContent(String content) {
+    assertTrue(driver.getPageSource().contains(content));
   }
 
 }

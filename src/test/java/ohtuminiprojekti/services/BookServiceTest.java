@@ -3,13 +3,11 @@ package ohtuminiprojekti.services;
 import ohtuminiprojekti.dao.BookRepository;
 import ohtuminiprojekti.domain.Book;
 import ohtuminiprojekti.services.BookService;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
@@ -18,6 +16,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+@ActiveProfiles("test")
 @RunWith(SpringJUnit4ClassRunner.class)
 public class BookServiceTest {
 
@@ -41,11 +40,11 @@ public class BookServiceTest {
     @Test
     public void listOfAllBooksIsReturned() {
         Book b1 = new Book();
-        b1.setTitle("b1");
-        b1.setAuthor("b1");
+        b1.setTitle("b1title");
+        b1.setAuthor("b1author");
         Book b2 = new Book();
-        b1.setTitle("b2");
-        b1.setAuthor("b2");
+        b2.setTitle("b2title");
+        b2.setAuthor("b2author");
 
         List<Book> bl = new ArrayList<>();
         bl.add(b1);
