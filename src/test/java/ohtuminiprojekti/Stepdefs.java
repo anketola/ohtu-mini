@@ -61,7 +61,10 @@ public class Stepdefs {
         .getText().contains(arg1));
   }
 
-  @Given("^command save book is selected$")
+  // alla oleva koodi on kommentoitu koska kirjoitushetkellä se tallentaa "varsinaiseen" tietokantaan
+  // ei siis testikantaan
+
+/*  @Given("^command save book is selected$")
   public void command_save_book_is_selected() throws Throwable {
     driver.get(baseUrl);
     clickLinkWithText("Lisää kirja");
@@ -76,7 +79,7 @@ public class Stepdefs {
   public void book_is_saved() throws Throwable {
     pageHasContent("Kirjalista");
     pageHasContent("Spaghetti Code");
-  }
+  }*/
 
 
   private void clickLinkWithText(String text) {
