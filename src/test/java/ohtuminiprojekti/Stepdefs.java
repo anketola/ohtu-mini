@@ -8,7 +8,6 @@ import java.io.File;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 import static org.junit.Assert.assertTrue;
 
@@ -27,7 +26,7 @@ public class Stepdefs {
         String absolutePath = file.getAbsolutePath();
         System.setProperty("webdriver.gecko.driver", absolutePath);
 
-        this.driver = new HtmlUnitDriver();
+        this.driver = new ModifiedHtmlUnitDriver();
 
     }
 
