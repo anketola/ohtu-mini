@@ -38,7 +38,6 @@ public class Stepdefs {
     @Given("^user is at the main page$")
     public void user_is_at_the_main_page() throws Throwable {
         driver.get("http://localhost:" + 8080 + "/");
-        Thread.sleep(1000);
     }
 
     @When("nothing is done")
@@ -48,9 +47,7 @@ public class Stepdefs {
 
     @When("^a link is clicked$")
     public void link_is_clicked() throws Throwable {
-        Thread.sleep(1000);
         clickLinkWithText("linkki");
-        Thread.sleep(1000);
     }
 
     @Given("^there are no books saved$")
