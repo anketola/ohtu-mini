@@ -1,6 +1,8 @@
 # ohtu-mini
 
-[![CircleCI](https://circleci.com/gh/anketola/ohtu-mini.svg?style=svg)](https://circleci.com/gh/anketola/ohtu-mini) <a href="https://codeclimate.com/github/anketola/ohtu-mini/maintainability"><img src="https://api.codeclimate.com/v1/badges/a6cd6f8a68e13bb210ff/maintainability" /></a>
+[![CircleCI](https://circleci.com/gh/anketola/ohtu-mini.svg?style=svg)](https://circleci.com/gh/anketola/ohtu-mini) <a href="https://codeclimate.com/github/anketola/ohtu-mini/maintainability"><img src="https://api.codeclimate.com/v1/badges/a6cd6f8a68e13bb210ff/maintainability" /></a> [![codecov](https://codecov.io/gh/anketola/ohtu-mini/branch/master/graph/badge.svg)](https://codecov.io/gh/anketola/ohtu-mini)
+
+
 
 
 Definition of Done:
