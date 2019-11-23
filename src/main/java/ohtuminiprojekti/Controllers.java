@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -14,7 +16,7 @@ public class Controllers {
   @Autowired
   BookService bookService;
 
-  @PostMapping("/books/create")
+  @RequestMapping(value = "/books/create", method = RequestMethod.POST)
   public String createBook(@RequestParam String title, @RequestParam String author) {
     this.bookService.newBook(title, author);
     return "redirect:/books/list";
