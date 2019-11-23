@@ -18,7 +18,7 @@ apply plugin: 'jacoco'
 logging.captureStandardOutput LogLevel.QUIET
 
 project.ext {
-    cucumberVersion = "1.2.6"
+    cucumberVersion = "4.7.4"
     junitVersion = "4.12"
     seleniumVersion = "3.141.59"
 }
@@ -64,11 +64,13 @@ dependencies {
     }
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile("org.springframework:spring-test")
-    testCompile "info.cukes:cucumber-core:" + cucumberVersion
-    testCompile "info.cukes:cucumber-java:" + cucumberVersion
-    testCompile "info.cukes:cucumber-junit:" + cucumberVersion
-    testCompile "info.cukes:cucumber-spring:" + cucumberVersion
-    testCompile "junit:junit:" + junitVersion 
+
+    testCompile group: "io.cucumber", name: "cucumber-core", version: cucumberVersion
+    testCompile group: "io.cucumber", name: "cucumber-java", version: cucumberVersion
+    testCompile group: "io.cucumber", name: "cucumber-junit", version: cucumberVersion
+    testCompile group: "io.cucumber", name: "cucumber-spring", version: cucumberVersion
+
+    testCompile "junit:junit:" + junitVersion
 }
 
 jacocoTestCoverageVerification {
