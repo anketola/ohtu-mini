@@ -84,10 +84,10 @@ public class Stepdefs {
         enterBookInformation(title, author);
     }
 
-    @Then("^book is saved$")
-    public void book_is_saved() throws Throwable {
+    @Then("book with name {string} is saved")
+    public void book_is_saved(String name) throws Throwable {
         pageHasContent("Kirjalista");
-        pageHasContent("Spaghetti Code");
+        pageHasContent(name);
     }
 //Tietokantaa ei nolla testien jälkeen
     @Then("^empty list of books is shown$")

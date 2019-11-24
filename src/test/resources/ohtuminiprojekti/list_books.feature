@@ -1,11 +1,18 @@
-Feature: As a user, I can see a list of saved books
+Feature: As an user, I can see a list of saved books
 
-    Scenario: user can see no books listed when no books saved
+    Scenario: List of books is empty, when no books are saved
         Given there are no books saved
         When command list books is selected
         Then empty list of books is shown
 
-    Scenario: user can see saved books listed
-        Given book with title "title" and author "author" is saved
+    Scenario: List of books contains book, when one book is saved.
+        Given book with title "Uolevin elämä ja teot" and author "Kotivalo" is saved
         When command list books is selected
-        Then book with title "title" and author "author" is listed
+        Then book with title "Uolevin elämä ja teot" and author "Kotivalo" is listed
+
+    Scenario: List of books contains books, when multiple books are saved.
+        Given book with title "Uolevin elämä ja teot" and author "Kotivalo" is saved
+        Given book with title "Syrjälän puhelinluettelo" and author "Syrjälän tietotoimisto" is saved
+        When command list books is selected
+        Then book with title "Uolevin elämä ja teot" and author "Kotivalo" is listed
+        And book with title "Syrjälän puhelinluettelo" and author "Syrjälän tietotoimisto" is listed
