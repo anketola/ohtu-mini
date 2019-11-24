@@ -4,4 +4,4 @@ plugins:
     config:
       file: "config/checkstyle/checkstyle.xml"
 exclude_patterns:
-  - !"**/test"
+  - "!**/test"
