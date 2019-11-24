@@ -101,6 +101,11 @@ public class Stepdefs {
         pageHasContent(title);
     }
 
+    @Then("a page with with text {string} is displayed")
+    public void a_page_with_with_text_is_displayed(String string) {
+        pageHasContent(string);
+    }
+    
     private void clickLinkWithText(String text) {
         int trials = 0;
         while (trials++ < 5) {
