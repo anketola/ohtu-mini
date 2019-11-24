@@ -90,10 +90,10 @@ public class Stepdefs {
         pageHasContent("Spaghetti Code");
     }
 //Tietokantaa ei nolla testien jälkeen
-//    @Then("^empty list of books is shown$")
-//    public void no_books_are_listed() throws Throwable {
-//        pageHasContent("No data available in table");
-//    }
+    @Then("^empty list of books is shown$")
+    public void no_books_are_listed() throws Throwable {
+        pageHasContent("Lukuvinkkejä ei ole vielä lisätty.");
+    }
     
     @Then("^book with title \"([^\"]*)\" and author \"([^\"]*)\" is listed$")
     public void books_are_listed(String title, String author) throws Throwable {
