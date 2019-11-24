@@ -2,7 +2,10 @@
 
 [![CircleCI](https://circleci.com/gh/anketola/ohtu-mini.svg?style=svg)](https://circleci.com/gh/anketola/ohtu-mini) <a href="https://codeclimate.com/github/anketola/ohtu-mini/maintainability"><img src="https://api.codeclimate.com/v1/badges/a6cd6f8a68e13bb210ff/maintainability" /></a> [![codecov](https://codecov.io/gh/anketola/ohtu-mini/branch/master/graph/badge.svg)](https://codecov.io/gh/anketola/ohtu-mini)
 
-Helsingin yliopiston tietojenkäsittelytieteen laitoksen syksyn 2019 ohjelmistotuotannon ryhmäprojektina toteutettava miniprojekti.
+Helsingin yliopiston tietojenkäsittelytieteen laitoksen syksyn 2019 ohjelmistotuotannon kurssin ryhmäprojektina toteutettava miniprojekti. Asiakkaamme ovat ammattilaisia tietojenkäsittelyn ammattikirjallisuuden lukijoita - onneksi mekin olemenne "ammattilaisia".
+
+[Sovellukseen](https://cryptic-atoll-74193.herokuapp.com/)
+
 
 Ryhmä: mergehell - *"Extreme Agile DevOps since November 2019"*
 
