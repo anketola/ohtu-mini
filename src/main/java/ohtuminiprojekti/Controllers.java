@@ -35,4 +35,10 @@ public class Controllers {
   public String indexRoot() {
     return "index";
   }
+
+  @PostMapping("/delete")
+  private String deleteBook(@RequestParam Long id){
+    this.bookService.deleteBook(id);
+    return "redirect:/books/list";
+  }
 }
