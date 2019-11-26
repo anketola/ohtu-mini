@@ -89,10 +89,15 @@ public class Stepdefs {
     pageHasContent(name);
   }
 
-  //Tietokantaa ei nolla testien jälkeen
+
   @Then("^empty list of books is shown$")
   public void no_books_are_listed() throws Throwable {
-    pageHasContent("Lukuvinkkejä ei ole vielä lisätty.");
+    pageHasHiddenContent("Lukuvinkkejä ei ole vielä lisätty.");
+  }
+  
+  @Then("^no empty list of books message is shown$")
+  public void no_no_books_are_listed_message() throws Throwable {
+    pageHasNoHiddenContent();
   }
 
   @Then("^book with title \"([^\"]*)\" and author \"([^\"]*)\" is listed$")
@@ -131,5 +136,13 @@ public class Stepdefs {
   private void pageHasContent(String content) {
     Assert.assertTrue(driver.getPageSource().contains(content));
   }
-
+  
+  private void pageHasHiddenContent(String content) {
+      Assert.assertTrue(content.contains(driver.findElements(By.id("hidden")).get(0).getText()));
+  }
+  
+  private void pageHasNoHiddenContent() {
+      Assert.assertTrue(driver.findElements(By.id("hidden")).isEmpty());
+  }
+  
 }

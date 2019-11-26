@@ -6,9 +6,7 @@
     <body>
         <header th:replace="layout :: header"></header>
         <h1>Kirjalista</h1>
-        <div th:if="${#lists.isEmpty(books)}">
-            <p>Lukuvinkkejä ei ole vielä lisätty.</p>
-        </div>
+        <div th:if="${#lists.isEmpty(books)}" hidden="hidden" id="hidden">Lukuvinkkejä ei ole vielä lisätty.</div>
         <table class="table" id="myTable">
             <thead>
                 <tr>
@@ -28,7 +26,24 @@
         <footer th:replace="layout :: footer"></footer>
         <script>
             $(document).ready(function () {
-                $('#myTable').DataTable({scrollY: 440});
+                $('#myTable').DataTable(
+                        {
+                            scrollY: 440,
+                            "language": {
+                                "lengthMenu": "Näytetään _MENU_ tulosta per sivu",
+                                "zeroRecords": "Lukuvinkkejä ei löytynyt.",
+                                "info": "Näytetään sivu _PAGE_ / _PAGES_",
+                                "infoEmpty": "Ei hakutuloksia.",
+                                "infoFiltered": "(Filtteröity _MAX_ tuloksesta)",
+                                "search": "Haku:",
+                                "paginate": {
+                                    "first": "Ensimmäinen",
+                                    "last": "Viimeinen",
+                                    "next": "Seuraava",
+                                    "previous": "Edellinen"
+                                },
+                            }
+                        });
             });
         </script>
     </body>
