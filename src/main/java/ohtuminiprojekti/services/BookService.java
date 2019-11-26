@@ -24,14 +24,13 @@ public class BookService {
     return bookRepository.findAll();
   }
 
-  public void deleteBook(Long id) {
+  public void deleteBook(long id) {
     bookRepository.deleteById(id);
   }
 
   public boolean existingBook(String title) {
     Book existingBook = bookRepository.findByTitle(title);
     if (existingBook != null) {
-      System.out.println("Not null, exists!");
       return true;
     }
     return false;

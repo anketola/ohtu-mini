@@ -60,11 +60,11 @@ public class ControllersTest {
     String author = "Writer McAuthor";
 
     mockMvc.perform(
-        MockMvcRequestBuilders.post("/books/create")
-            .param("title", title)
-            .param("author", author)
+            MockMvcRequestBuilders.post("/books/create")
+                    .param("title", title)
+                    .param("author", author)
     ).andExpect(status().is3xxRedirection())
-        .andExpect(redirectedUrl("/books/list")).andReturn();
+            .andExpect(redirectedUrl("/books/list")).andReturn();
 
     MvcResult res = mockMvc.perform(get("/books/list")).andReturn();
     String content = res.getResponse().getContentAsString();

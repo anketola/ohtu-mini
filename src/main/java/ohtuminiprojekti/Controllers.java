@@ -1,5 +1,6 @@
 package ohtuminiprojekti;
 
+import ohtuminiprojekti.domain.Book;
 import ohtuminiprojekti.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class Controllers {
@@ -16,8 +18,11 @@ public class Controllers {
 
   @PostMapping("/books/create")
   public String createBook(@RequestParam String title, @RequestParam String author) {
-    this.bookService.newBook(title, author);
-    return "redirect:/books/list";
+    if (!this.bookService.existingBook(title)) {
+      this.bookService.newBook(title, author);
+      return "redirect:/books/list";
+    }
+    return "redirect:/books/create?error";
   }
 
   @GetMapping("/books/list")
@@ -37,7 +42,7 @@ public class Controllers {
   }
 
   @PostMapping("/delete")
-  private String deleteBook(@RequestParam Long id){
+  public String deleteBook(@RequestParam long id){
     this.bookService.deleteBook(id);
     return "redirect:/books/list";
   }
