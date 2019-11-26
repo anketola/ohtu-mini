@@ -6,12 +6,12 @@
     <body>
         <header th:replace="layout :: header"></header>
         <h1>Kirjalista</h1>
-        <div th:if="${#lists.isEmpty(books)}" hidden="hidden" id="hidden">Lukuvinkkejä ei ole vielä lisätty.</div>
         <table class="table" id="myTable">
             <thead>
                 <tr>
                     <th style="width: 10%">Nimi</th>
                     <th style="width: 10%">Kirjailija</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -19,11 +19,10 @@
                     <strong>
                         <td style="position:relative;"><span style="width: 90%; overflow: auto; position: absolute; top: -18px;" th:text=${book.title}></span></td>
                         <td style="position:relative;"><span style="width: 90%; overflow: auto; position: absolute; top: -18px;" th:text=${book.author}></span></td>
-                        <td style="position:relative;"><span style="width: 90%; overflow: auto; position: absolute; top: -18px;" th:text=${book.id}></span></td>
                         <td style="position:relative;">
                             <form th:action="@{/delete}" method="post">
                                 <input type="hidden" name="id" th:value="${book.id}" />
-                                <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Poista lukuvinkki?');"/>
+                                <input type="submit" value="Poista" class="btn btn-danger" onclick="return confirm('Poista lukuvinkki?');"/>
                             </form>
                         </td>
                     </strong>
