@@ -6,7 +6,6 @@
     <body>
         <header th:replace="layout :: header"></header>
         <h1>Kirjalista</h1>
-        <div th:if="${#lists.isEmpty(books)}" hidden="hidden" id="hidden">Lukuvinkkejä ei ole vielä lisätty.</div>
         <table class="table" id="myTable">
             <thead>
                 <tr>
