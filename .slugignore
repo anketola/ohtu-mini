@@ -1,0 +1,6 @@
+/test
+/dokumentteja
+/.circleci
+
+*.png
+*.md

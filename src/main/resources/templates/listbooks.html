@@ -19,6 +19,13 @@
                     <strong>
                         <td style="position:relative;"><span style="width: 90%; overflow: auto; position: absolute; top: -18px;" th:text=${book.title}></span></td>
                         <td style="position:relative;"><span style="width: 90%; overflow: auto; position: absolute; top: -18px;" th:text=${book.author}></span></td>
+                        <td style="position:relative;"><span style="width: 90%; overflow: auto; position: absolute; top: -18px;" th:text=${book.id}></span></td>
+                        <td style="position:relative;">
+                            <form th:action="@{/delete}" method="post">
+                                <input type="hidden" name="id" th:value="${book.id}" />
+                                <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Poista lukuvinkki?');"/>
+                            </form>
+                        </td>
                     </strong>
                 </tr>
             </tbody>
