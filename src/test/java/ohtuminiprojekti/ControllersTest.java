@@ -1,5 +1,7 @@
 package ohtuminiprojekti;
 
+import ohtuminiprojekti.dao.BookRepository;
+import ohtuminiprojekti.domain.Book;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
@@ -19,6 +21,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Transactional
 @ActiveProfiles("test")
@@ -29,7 +32,10 @@ public class ControllersTest {
 
   @Autowired
   private MockMvc mockMvc;
-
+  
+  @Autowired
+  BookRepository bookRepository;
+  
   @Before
   public void setUp() {
 
@@ -89,5 +95,39 @@ public class ControllersTest {
             .attributeExists("books"));
   }
   
+  @Test
+  public void bookCanBeMarkAsRead() throws Exception {
+    Book book = new Book();
+    bookRepository.save(book);
+      
+    mockMvc.perform(
+            MockMvcRequestBuilders.post("/mark")
+                    .param("id", "1")
+                    .param("url", "unread")
+    ).andExpect(status().is3xxRedirection())
+            .andExpect(redirectedUrl("/books/list/unread")).andReturn();
   
+    Book modifiedBook = bookRepository.getOne(1L);
+    
+    Assert.assertEquals(1, modifiedBook.getIsRead());
+  }
+  
+  @Test
+  public void bookCanBeMarkAsUnread() throws Exception {
+    Book book2 = new Book();
+    bookRepository.save(book2);
+    Long id = book2.getId();
+    
+    mockMvc.perform(
+            MockMvcRequestBuilders.post("/unmark")
+                    .param("id", Long.toString(book2.getId()))
+                    .param("url", "read")
+    ).andExpect(status().is3xxRedirection())
+            .andExpect(redirectedUrl("/books/list/read")).andReturn();
+  
+    Book modifiedBook = bookRepository.getOne(id);
+    Assert.assertEquals(0, modifiedBook.getIsRead()); 
+  
+  }
+
 }
