@@ -16,4 +16,3 @@ Ryhmä: mergehell - *"Extreme Agile DevOps since November 2019"*
 [Product ja sprint backlogit](https://docs.google.com/spreadsheets/d/1w9VKrFW_TY9B6ujOGc0o4PbNxNm2tUUOI-F3fBlMWJo/edit?usp=sharing "Backlogit")
 
 [Käyttöohje](https://docs.google.com/document/d/1gfFUFstXdBTj1rvA8FHEdI2cb66RtgwofszET85srmI/edit?usp=sharing "Käyttöohje")
-.
