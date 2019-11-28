@@ -12,11 +12,14 @@ public class BookService {
   @Autowired
   private BookRepository bookRepository;
 
-  public void newBook(String titleString, String authorString) {
+  public void newBook(String titleString, String authorString, String urlString) {
     Book newBook = new Book();
     newBook.setTitle(titleString);
     newBook.setAuthor(authorString);
     newBook.setIsRead(0);
+    if (urlString != null) {
+      newBook.setUrlstring(urlString);
+    }
     bookRepository.save(newBook);
   }
 
@@ -60,10 +63,13 @@ public class BookService {
     return false;
   }
 
-  public void edit(long id, String title, String author) {
+  public void edit(long id, String title, String author, String urlstring) {
     Book book = bookRepository.getOne(id);
     book.setTitle(title);
     book.setAuthor(author);
+    if (urlstring != null) {
+      book.setUrlstring(urlstring);
+    }
     bookRepository.save(book);
   }
 

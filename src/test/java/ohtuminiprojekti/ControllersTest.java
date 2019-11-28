@@ -43,7 +43,7 @@ public class ControllersTest {
         .andReturn();
 
     String content = res.getResponse().getContentAsString();
-    Assert.assertTrue(content.contains("Tervetuloa kirjapalveluun"));
+    Assert.assertTrue(content.contains("Tervetuloa lukuvinkkisovellukseen"));
   }
 
   @Test
@@ -63,6 +63,7 @@ public class ControllersTest {
             MockMvcRequestBuilders.post("/books/create")
                     .param("title", title)
                     .param("author", author)
+                    .param("urlstring", "")
     ).andExpect(status().is3xxRedirection())
             .andExpect(redirectedUrl("/books/list")).andReturn();
 

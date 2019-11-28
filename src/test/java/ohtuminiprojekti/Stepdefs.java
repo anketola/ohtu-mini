@@ -56,7 +56,7 @@ public class Stepdefs {
     @Given("^book with title \"([^\"]*)\" and author \"([^\"]*)\" is saved$")
     public void books_saved(String title, String author) throws Throwable {
         driver.get(baseUrl);
-        clickLinkWithText("Lisää kirja");
+        clickLinkWithText("Lisää lukuvinkki");
         enterBookInformation(title, author);
     }
 
@@ -69,13 +69,13 @@ public class Stepdefs {
     @Given("^command save book is selected$")
     public void command_save_book_is_selected() throws Throwable {
         driver.get(baseUrl);
-        clickLinkWithText("Lisää kirja");
+        clickLinkWithText("Lisää lukuvinkki");
     }
 
     @When("^command list books is selected$")
     public void command_list_book_is_selected() throws Throwable {
         driver.get(baseUrl);
-        clickLinkWithText("Listaa kirjat");
+        clickLinkWithText("Listaa lukuvinkit");
     }
 
     @When("^title \"([^\"]*)\" and author \"([^\"]*)\" are entered$")
@@ -85,7 +85,7 @@ public class Stepdefs {
 
     @Then("book with name {string} is saved")
     public void book_is_saved(String name) throws Throwable {
-        pageHasContent("Kirjalista");
+        pageHasContent("Lista lukuvinkeistä");
         pageHasContent(name);
     }
 

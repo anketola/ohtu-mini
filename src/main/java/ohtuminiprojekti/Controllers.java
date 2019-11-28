@@ -16,9 +16,9 @@ public class Controllers {
   BookService bookService;
 
   @PostMapping("/books/create")
-  public String createBook(@RequestParam String title, @RequestParam String author) {
+  public String createBook(@RequestParam String title, @RequestParam String author, @RequestParam String urlstring) {
     if (!this.bookService.existingBook(title)) {
-      this.bookService.newBook(title, author);
+      this.bookService.newBook(title, author, urlstring);
       return "redirect:/books/list";
     }
     return "redirect:/books/create?error";
@@ -60,9 +60,9 @@ public class Controllers {
   }
 
   @PostMapping("/edit")
-  public String edit(RedirectAttributes redirectAttributes, @RequestParam long id, @RequestParam String url, @RequestParam String title, @RequestParam String author) {
+  public String edit(RedirectAttributes redirectAttributes, @RequestParam long id, @RequestParam String url, @RequestParam String title, @RequestParam String author, @RequestParam String urlstring) {
     if (!this.bookService.existingOtherBookWithSameTitle(id, title)) {
-      this.bookService.edit(id, title, author);
+      this.bookService.edit(id, title, author, urlstring);
       return redirectToSameListing(url);
     }
     redirectAttributes.addAttribute("id", id);

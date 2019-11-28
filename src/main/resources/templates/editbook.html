@@ -23,6 +23,15 @@
                         <input type="text" name="author" th:value="${book.author}" required/>
                     </td>
                 </tr>
+                <br />
+                <br/>
+                Liittyykö lukkuvinkkiisi nettilinkki? Voit lisätä sen alla olevaan kenttään.<br />
+                <tr>
+                    <td>Nettilinkki:</td>
+                        <td>
+                            <input type="text" name="urlstring" th:value="${book.urlstring}"/>
+                        </td>
+                    </tr>
                 <tr>
                     <td>
                         <input type="hidden" name="url" th:value="${url}"/>

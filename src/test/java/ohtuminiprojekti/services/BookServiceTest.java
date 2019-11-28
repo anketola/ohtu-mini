@@ -52,7 +52,7 @@ public class BookServiceTest {
   public void newBookIsSaved() {
     String title = "Test Book";
     String author = "Dest Tester";
-    service.newBook(title, author);
+    service.newBook(title, author, null);
     verify(repo, times(1)).save(any(Book.class));
   }
 
@@ -77,5 +77,5 @@ public class BookServiceTest {
     service.existingBook("b1title");
     verify(repo, times(1)).findByTitle("b1title");
   }
-
+  
 }

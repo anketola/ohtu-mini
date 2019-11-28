@@ -17,6 +17,7 @@ public class Book extends AbstractPersistable<Long> {
 
   private String title;
   private String author;
+  private String urlstring;
   private int isRead;
   @OneToOne(cascade = CascadeType.ALL, optional = true, orphanRemoval = true)
   private Picture picture;
