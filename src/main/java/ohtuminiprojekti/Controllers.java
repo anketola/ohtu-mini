@@ -59,7 +59,7 @@ public class Controllers {
     return "index";
   }
 
-  @PostMapping("/edit")
+  @PostMapping("/books/edit")
   public String edit(RedirectAttributes redirectAttributes, @RequestParam long id, @RequestParam String url, @RequestParam String title, @RequestParam String author, @RequestParam String urlstring) {
     if (!this.bookService.existingOtherBookWithSameTitle(id, title)) {
       this.bookService.edit(id, title, author, urlstring);

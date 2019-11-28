@@ -38,12 +38,12 @@
                                 <form style="display:inline" th:action="@{/books/edit}" method="get">
                                     <input type="hidden" name="id" th:value="${book.id}" />
                                     <input type="hidden" name="url" th:value="${#httpServletRequest.requestURI}"/>
-                                    <input type="submit" value="Muokkaa" class="btn btn-sm"/>
+                                    <input type="submit" value="Muokkaa" class="btn btn-warning btn-sm"/>
                                 </form>
                                 <form style="display:inline" th:action="@{/delete}" method="post">
                                     <input type="hidden" name="id" th:value="${book.id}" />
                                     <input type="hidden" name="url" th:value="${#httpServletRequest.requestURI}"/>
-                                    <input type="submit" value="Poista" class="btn btn-sm" onclick="return confirm('Poista lukuvinkki?');"/>
+                                    <input type="submit" value="Poista" class="btn btn-danger btn-sm" onclick="return confirm('Poista lukuvinkki?');"/>
                                 </form>
                             </span>
                         </td>

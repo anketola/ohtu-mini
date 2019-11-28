@@ -72,4 +72,22 @@ public class ControllersTest {
     Assert.assertTrue(content.contains(title));
     Assert.assertTrue(content.contains(author));
   }
+  
+  @Test
+  public void unreadBooksReturnsBooksModel () throws Exception {
+    mockMvc.perform(
+        get("/books/list/unread"))
+        .andExpect(model()
+            .attributeExists("books"));
+  }
+  
+  @Test
+  public void readBooksReturnsBooksModel () throws Exception {
+    mockMvc.perform(
+        get("/books/list/read"))
+        .andExpect(model()
+            .attributeExists("books"));
+  }
+  
+  
 }
