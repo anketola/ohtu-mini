@@ -5,12 +5,13 @@
     </head>
     <body>
         <header th:replace="layout :: header"></header>
-        <h1>Kirjalista</h1>
+        <h1>Lista lukuvinkeistä</h1>
         <table class="table" id="myTable">
             <thead>
                 <tr>
                     <th style="width: 10%">Nimi</th>
                     <th style="width: 10%">Kirjailija</th>
+                    <th>Lukuvinkin nettiosoite</th>
                     <th></th>
                 </tr>
             </thead>
@@ -20,26 +21,29 @@
                         <td style="position:relative;"><span style="width: 90%; overflow: auto; position: absolute; top: -18px;" th:text=${book.title}></span></td>
                         <td style="position:relative;"><span style="width: 90%; overflow: auto; position: absolute; top: -18px;" th:text=${book.author}></span></td>
                         <td style="position:relative;">
+                            <a th:href="${book.urlstring}"><span th:text=${book.urlstring}></span></a>
+                        </td>
+                        <td style="position:relative;">
                             <span>
                                 <form th:if="${book.isRead == 0}" style="display:inline" th:action="@{/mark}" method="post">
                                     <input type="hidden" name="id" th:value="${book.id}" />
                                     <input type="hidden" name="url" th:value="${#httpServletRequest.requestURI}"/>
-                                    <input type="submit" value="Merkitse luetuksi" class="btn" onclick="return alert('Merkitty luetuksi.');"/>
+                                    <input type="submit" value="Merkitse luetuksi" class="btn btn-sm" onclick="return alert('Merkitty luetuksi.');"/>
                                 </form>
                                 <form th:unless="${book.isRead == 0}" style="display:inline" th:action="@{/unmark}" method="post">
                                     <input type="hidden" name="id" th:value="${book.id}" />
                                     <input type="hidden" name="url" th:value="${#httpServletRequest.requestURI}"/>
-                                    <input type="submit" value="Merkitse lukemattomaksi" class="btn" onclick="return alert('Merkitty lukemattomaksi.');"/>
+                                    <input type="submit" value="Merkitse lukemattomaksi" class="btn btn-sm" onclick="return alert('Merkitty lukemattomaksi.');"/>
                                 </form>
                                 <form style="display:inline" th:action="@{/books/edit}" method="get">
                                     <input type="hidden" name="id" th:value="${book.id}" />
                                     <input type="hidden" name="url" th:value="${#httpServletRequest.requestURI}"/>
-                                    <input type="submit" value="Muokkaa" class="btn"/>
+                                    <input type="submit" value="Muokkaa" class="btn btn-warning btn-sm"/>
                                 </form>
                                 <form style="display:inline" th:action="@{/delete}" method="post">
                                     <input type="hidden" name="id" th:value="${book.id}" />
                                     <input type="hidden" name="url" th:value="${#httpServletRequest.requestURI}"/>
-                                    <input type="submit" value="Poista" class="btn" onclick="return confirm('Poista lukuvinkki?');"/>
+                                    <input type="submit" value="Poista" class="btn btn-danger btn-sm" onclick="return confirm('Poista lukuvinkki?');"/>
                                 </form>
                             </span>
                         </td>

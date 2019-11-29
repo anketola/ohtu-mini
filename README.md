@@ -4,9 +4,6 @@
 
 Helsingin yliopiston tietojenkäsittelytieteen laitoksen syksyn 2019 ohjelmistotuotannon kurssin ryhmäprojektina toteutettava miniprojekti. Asiakkaamme ovat ammattilaisia tietojenkäsittelyn ammattikirjallisuuden lukijoita - onneksi mekin olemenne "ammattilaisia".
 
-[Sovellukseen](https://cryptic-atoll-74193.herokuapp.com/)
-
-
 Ryhmä: mergehell - *"Extreme Agile DevOps since November 2019"*
 
 ## Dokumentaatiota

@@ -15,10 +15,11 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 @AllArgsConstructor
 public class Book extends AbstractPersistable<Long> {
 
-    private String title;
-    private String author;
-    private int isRead;
-    @OneToOne(cascade = CascadeType.ALL, optional = true, orphanRemoval = true)
-    private Picture picture;
+  private String title;
+  private String author;
+  private String urlstring;
+  private int isRead;
+  @OneToOne(cascade = CascadeType.ALL, optional = true, orphanRemoval = true)
+  private Picture picture;
 
 }

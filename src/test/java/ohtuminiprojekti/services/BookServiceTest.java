@@ -33,6 +33,7 @@ public class BookServiceTest {
   List<Book> bookList;
   Book b1;
   Book b2;
+  Book b3;
 
   @Before
   public void setUp() {
@@ -52,10 +53,16 @@ public class BookServiceTest {
   public void newBookIsSaved() {
     String title = "Test Book";
     String author = "Dest Tester";
-    service.newBook(title, author);
+    service.newBook(title, author, null);
     verify(repo, times(1)).save(any(Book.class));
   }
 
+  @Test
+  public void bookCanBeRetrieved() {
+    Book book = service.getById(1L);
+    verify(repo, times(1)).getOne(1L);
+  }
+  
   @Test
   public void listOfAllBooksIsReturned() {
     when(service.allBooks()).thenReturn(bookList);
@@ -77,5 +84,11 @@ public class BookServiceTest {
     service.existingBook("b1title");
     verify(repo, times(1)).findByTitle("b1title");
   }
-
+  
+  @Test
+  public void existingBookWithSameTitleSearchesDatabase() {
+    service.existingOtherBookWithSameTitle(1L , "b2title");
+    verify(repo, times(1)).findByTitle("b2title");
+  }
+ 
 }
