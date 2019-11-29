@@ -20,10 +20,10 @@
                 <tr th:each="book: ${books}" style="line-height: 50px; min-height: 50px; height: 50px">
                     <strong>
                         <td style="position:relative;"><span th:if="${book.picture!=null}"><img style="max-height:80px; max-width:80px" th:src="@{/pictures/{id}(id=${book.picture.id})}"/></span></td>
-                        <td style="position:relative;"><span style="width: 90%; overflow: auto; position: absolute; top: -18px;" th:text=${book.title}></span></td>
-                        <td style="position:relative;"><span style="width: 90%; overflow: auto; position: absolute; top: -18px;" th:text=${book.author}></span></td>
+                        <td style="position:relative;"><span style="width: 90%; overflow: auto; position: absolute; top: -18px; white-space: nowrap" th:text=${book.title}></span></td>
+                        <td style="position:relative;"><span style="width: 90%; overflow: auto; position: absolute; top: -18px; white-space: nowrap" th:text=${book.author}></span></td>
                         <td style="position:relative;" th:with="max_length=${#strings.length(book.urlstring)}">
-                            <a th:if="${book.urlstring!=''}" th:href="${book.urlstring}"><span style="width: 50%; overflow: auto; position: absolute; top: -18px;" th:text="${#strings.substring(book.urlstring,8,max_length)} "></span></a>
+                            <a th:if="${book.urlstring!=''}" th:href="${book.urlstring}"><span style="width: 50%; overflow: auto; position: absolute; top: -18px; white-space: nowrap" th:text="${#strings.substring(book.urlstring,8,max_length)} "></span></a>
                         </td>
                         <td style="position:relative;">
                             <span>
