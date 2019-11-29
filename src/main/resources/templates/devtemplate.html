@@ -12,7 +12,7 @@
         <p>Testaa näin: 1) poista paikallinen tietokanta (jotta ID:t nollaantuu), 2) lisää ensin kirja normaalisti, 3) lisää tältä sivulta kuva 4) nyt nuo ovat yhdistetty ja sen kuvan pitäisi näkyä</p>
         <p>Tää ei ole optimaalinen ratkaisu, mutta toimii. Parantaa myöhemmin. Käyttöön vain sijoittamalla kovakoodattujen kohtien tilalle muuttujat jne.</p>
         <p>Kirjan poistamisen pitäisi tuhota tietokannasta myös kuvan viitteen perusteella</p>
-        <form method="POST" th:action="@{/pictures/books/create}" enctype="multipart/form-data">
+        <form method="POST" th:action="@{/pictures/book/create}" enctype="multipart/form-data">
             <input type="file" name="file" id="file"/><br />
             <input type="hidden" name="bookid" value="1">
             <button type="submit">Lisää uusi kansikuva</button>

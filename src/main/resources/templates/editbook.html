@@ -9,7 +9,7 @@
         <div th:if="${param.error}"  class="alert alert-danger notification" role="alert">
             <p>Saman niminen kirja on jo talletettu.</p>
         </div>
-        <form method="POST" th:action="@{/books/edit}">
+        <form method="POST" th:action="@{/book/edit}">
             <table>
                 <tr>
                     <td>Kirjan nimi:</td>
@@ -24,12 +24,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Nettilinkki (vapaaehtoinen):</td>
-                        <td>
-                            <input type="text" name="urlstring" th:value="${book.urlstring}"/>
-                        </td>
-                    </tr>
-                <tr>
+                    <td>Kommentti:</td>
+                    <td>
+                        <input type="textarea" name="comment" th:value="${book.comment}" required/>
+                    </td>
+                </tr>
                     <td>
                         <input type="hidden" name="url" th:value="${url}"/>
                         <input type="hidden" name="id" th:value="${book.id}"/>

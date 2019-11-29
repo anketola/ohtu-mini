@@ -12,12 +12,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class PictureService {
-  
+
   @Autowired
   private PictureRepository pictureRepository;
-  
-  @Autowired BookRepository bookRepository;
-  
+
+  @Autowired
+  BookRepository bookRepository;
+
   @Transactional
   public void newPicture(MultipartFile file, String type, Long id) throws IOException {
     if (file.getContentType().equals("image/jpeg")) {
@@ -25,7 +26,7 @@ public class PictureService {
         Picture newPicture = new Picture();
         newPicture.setContent(file.getBytes());
         Book book = bookRepository.getOne(id);
-        book.setPicture(newPicture);
+        //book.setPicture(newPicture);
         newPicture.setBook(book);
       }
     }

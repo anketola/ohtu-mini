@@ -18,19 +18,19 @@
             <tbody>
                 <tr th:each="book: ${books}" style="line-height: 50px; min-height: 50px; height: 50px">
                     <strong>
-                        <td style="position:relative;"><span style="width: 90%; overflow: auto; position: absolute; top: -18px;" th:text=${book.title}></span></td>
+                        <td style="position:relative;"><span style="width: 90%; overflow: auto; position: absolute; top: -18px;" th:text=${book.name}></span></td>
                         <td style="position:relative;"><span style="width: 90%; overflow: auto; position: absolute; top: -18px;" th:text=${book.author}></span></td>
                         <td style="position:relative;">
                             <a th:href="${book.urlstring}"><span th:text=${book.urlstring}></span></a>
                         </td>
                         <td style="position:relative;">
                             <span>
-                                <form th:if="${book.isRead == 0}" style="display:inline" th:action="@{/mark}" method="post">
+                                <form th:if="${book.hasBeenRead == false}" style="display:inline" th:action="@{/mark}" method="post">
                                     <input type="hidden" name="id" th:value="${book.id}" />
                                     <input type="hidden" name="url" th:value="${#httpServletRequest.requestURI}"/>
                                     <input type="submit" value="Merkitse luetuksi" class="btn btn-sm" onclick="return alert('Merkitty luetuksi.');"/>
                                 </form>
-                                <form th:unless="${book.isRead == 0}" style="display:inline" th:action="@{/unmark}" method="post">
+                                <form th:unless="${book.hasBeenRead == false}" style="display:inline" th:action="@{/unmark}" method="post">
                                     <input type="hidden" name="id" th:value="${book.id}" />
                                     <input type="hidden" name="url" th:value="${#httpServletRequest.requestURI}"/>
                                     <input type="submit" value="Merkitse lukemattomaksi" class="btn btn-sm" onclick="return alert('Merkitty lukemattomaksi.');"/>
