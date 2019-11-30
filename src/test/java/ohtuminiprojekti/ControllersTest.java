@@ -21,7 +21,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Transactional
 @ActiveProfiles("test")
@@ -99,16 +98,16 @@ public class ControllersTest {
   public void bookCanBeMarkAsRead() throws Exception {
     Book book = new Book();
     bookRepository.save(book);
-      
+    Long id = book.getId();
+
     mockMvc.perform(
             MockMvcRequestBuilders.post("/mark")
-                    .param("id", "1")
+                    .param("id", Long.toString(book.getId()))
                     .param("url", "unread")
     ).andExpect(status().is3xxRedirection())
             .andExpect(redirectedUrl("/books/list/unread")).andReturn();
   
-    Book modifiedBook = bookRepository.getOne(1L);
-    
+    Book modifiedBook = bookRepository.getOne(id);
     Assert.assertEquals(1, modifiedBook.getIsRead());
   }
   
@@ -130,4 +129,63 @@ public class ControllersTest {
   
   }
 
+  @Test
+  public void bookCanBeEdited() throws Exception {
+    Book book = new Book();
+    book.setTitle("cannotEdit");
+    book.setAuthor("Editor");
+    bookRepository.save(book);
+    long id = book.getId();
+
+    mockMvc.perform(MockMvcRequestBuilders.post("/books/edit")
+                    .param("id", String.valueOf(id))
+                    .param("url", "/books/list")
+                    .param("title", "can edit")
+            .param("author", "Editor")
+            .param("urlstring", "")
+    ).andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/books/list")).andReturn();
+
+    Book edited = bookRepository.getOne(id);
+    Assert.assertEquals("can edit", edited.getTitle());
+  }
+
+  @Test
+  public void bookTitleCannotBeEditedToBeExistingTitle() throws Exception {
+    Book book = new Book();
+    book.setTitle("existingTitle");
+    book.setAuthor("Editor");
+    Book differentBook = new Book();
+    differentBook.setTitle("editToExistingTitle");
+    differentBook.setAuthor("Editor");
+    bookRepository.save(book);
+    bookRepository.save((differentBook));
+
+    long idDifferent = differentBook.getId();
+
+    mockMvc.perform(MockMvcRequestBuilders.post("/books/edit")
+            .param("id", String.valueOf(idDifferent))
+            .param("url", "/books/list")
+            .param("title", "existingTitle")
+            .param("author", "Editor")
+            .param("urlstring", "")
+
+    ).andExpect(status().is3xxRedirection()).andReturn();
+
+    Assert.assertEquals("editToExistingTitle", differentBook.getTitle());
+  }
+
+  @Test
+  public void bookCanBeDeleted() throws Exception {
+    Book deleteThis = new Book();
+    deleteThis.setTitle("delete this");
+    deleteThis.setAuthor("Deleter");
+    bookRepository.save(deleteThis);
+
+    mockMvc.perform(MockMvcRequestBuilders.post("/delete")
+                    .param("id", String.valueOf(deleteThis.getId()))
+            .param("url", "/books/list")
+    ).andExpect(status().is3xxRedirection()).andReturn();
+
+    Assert.assertTrue(bookRepository.findByTitle("delete this") == null);
+  }
 }
