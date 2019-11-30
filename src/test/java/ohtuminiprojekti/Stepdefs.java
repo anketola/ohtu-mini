@@ -26,7 +26,6 @@ public class Stepdefs {
         System.setProperty("webdriver.gecko.driver", absolutePath);
 
         this.driver = new ModifiedHtmlUnitDriver();
-
     }
 
     @After

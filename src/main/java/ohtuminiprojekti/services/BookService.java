@@ -1,6 +1,5 @@
 package ohtuminiprojekti.services;
 
-import java.util.List;
 import ohtuminiprojekti.dao.BookRepository;
 import ohtuminiprojekti.domain.Book;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,74 +11,32 @@ public class BookService {
   @Autowired
   private BookRepository bookRepository;
 
-  public void newBook(String titleString, String authorString, String urlString) {
-    Book newBook = new Book();
-    newBook.setTitle(titleString);
-    newBook.setAuthor(authorString);
-    newBook.setIsRead(0);
-    if (urlString != null) {
-      newBook.setUrlstring(urlString);
-    }
-    bookRepository.save(newBook);
-  }
-
-  public List<Book> allBooks() {
-    return bookRepository.findAll();
+  public Book newBook(String titleString, String authorString, String comment) {
+    Book book = new Book();
+    book.setName(titleString);
+    book.setTitle(titleString);
+    book.setAuthor(authorString);
+    book.setComment(comment);
+    book.setHasBeenRead(false);
+    bookRepository.save(book);
+    return book;
   }
 
   public Book getById(long id) {
     return bookRepository.getOne(id);
   }
 
-  public List<Book> readBooks() {
-    return bookRepository.findByisRead(1);
-  }
-
-  public List<Book> unreadBooks() {
-    return bookRepository.findByisRead(0);
-  }
-
-  public void deleteBook(long id) {
-    bookRepository.deleteById(id);
-  }
-
-  public void markBookAsRead(long id) {
-    Book toBeMarked = bookRepository.getOne(id);
-    toBeMarked.setIsRead(1);
-    bookRepository.save(toBeMarked);
-  }
-
-  public void markBookAsUnread(long id) {
-    Book toBeMarked = bookRepository.getOne(id);
-    toBeMarked.setIsRead(0);
-    bookRepository.save(toBeMarked);
-  }
-
   public boolean existingBook(String title) {
     Book existingBook = bookRepository.findByTitle(title);
-    if (existingBook != null) {
-      return true;
-    }
-    return false;
+    return existingBook != null;
   }
 
-  public void edit(long id, String title, String author, String urlstring) {
+  public void edit(long id, String title, String author, String comment) {
     Book book = bookRepository.getOne(id);
+    book.setName(title);
     book.setTitle(title);
     book.setAuthor(author);
-    if (urlstring != null) {
-      book.setUrlstring(urlstring);
-    }
+    book.setComment(comment);
     bookRepository.save(book);
-  }
-
-  public boolean existingOtherBookWithSameTitle(long id, String title) {
-    Book existingBook = bookRepository.findByTitle(title);
-    if (existingBook != null) {
-      if (existingBook.getId() != id) {
-        return true;
-      }
-    }
-    return false;
   }
 }

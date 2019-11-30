@@ -9,10 +9,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Book extends Bookmark {
+public class Link extends Bookmark {
 
-  private String type = "book";
-  private String title;
-  private String author;
+  private String link;
+  private String type = "link";
 
 }

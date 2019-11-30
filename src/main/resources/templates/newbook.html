@@ -5,11 +5,11 @@
     </head>
     <body>
         <header th:replace="layout :: header"></header>
-        <h1>Lukuvinkki lisääminen</h1>
+        <h1>Lukuvinkki (kirja) lisääminen</h1>
         <div th:if="${param.error}"  class="alert alert-danger notification" role="alert">
             <p>Lukuvinkki on jo tallennettu!</p>
         </div>
-        <form method="POST" th:action="@{/books/create}">
+        <form method="POST" th:action="@{/book/create}">
             <table>
                 <tr>
                     <td>Nimi:</td>
@@ -23,11 +23,10 @@
                         <input type="text" name="author" required/>
                     </td>
                 </tr>
-                
                 <tr>
-                    <td>Nettilinkki (vapaaehtoinen, anna linkki muodossa, joka alkaa "www."):<br /></td>
+                    <td>Kommentti:</td>
                     <td>
-                        <input type="text" name="urlstring"/>
+                        <input type="textarea" name="comment"/>
                     </td>
                 </tr>
                 </div>
