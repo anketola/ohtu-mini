@@ -14,7 +14,7 @@ public class LinkService {
   public Link newLink(String name, String url, String comment) {
     Link link = new Link();
     link.setName(name);
-    link.setUrl(url);
+    link.setLink(url);
     link.setComment(comment);
     link.setHasBeenRead(false);
     linkRepository.save(link);
@@ -26,12 +26,12 @@ public class LinkService {
   }
 
   public boolean existingLinkByUrl(String url) {
-    return linkRepository.findByUrl(url) != null;
+    return linkRepository.findByLink(url) != null;
   }
 
   public void edit(long id, String name, String url, String comment) {
     Link link = linkRepository.getOne(id);
-    link.setUrl(url);
+    link.setLink(url);
     link.setName(name);
     link.setComment(comment);
     linkRepository.save(link);

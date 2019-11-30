@@ -17,9 +17,9 @@ public class LinkController {
   private LinkService linkService;
 
   @PostMapping("/link/create")
-  public String createLink(@RequestParam String name, @RequestParam String url, @RequestParam String comment) {
-    if (!linkService.existingLinkByUrl(url)) {
-      linkService.newLink(name, url, comment);
+  public String createLink(@RequestParam String name, @RequestParam String link, @RequestParam String comment) {
+    if (!linkService.existingLinkByUrl(link)) {
+      linkService.newLink(name, link, comment);
       return "redirect:/bookmarks/list";
     } else {
       return "redirect:/bookmarks/create?error";
@@ -39,9 +39,9 @@ public class LinkController {
   }
 
   @PostMapping("/link/edit")
-  public String editLink(RedirectAttributes redirectAttributes, @RequestParam long id, @RequestParam String name, @RequestParam String url, @RequestParam String comment) {
-    if (!linkService.existingLinkByUrl(url)) {
-      linkService.edit(id, name, url, comment);
+  public String editLink(RedirectAttributes redirectAttributes, @RequestParam long id, @RequestParam String url, @RequestParam String name, @RequestParam String link, @RequestParam String comment) {
+    if (!linkService.existingLinkByUrl(link)) {
+      linkService.edit(id, name, link, comment);
       return Utils.redirectToSameListing(url);
     }
     redirectAttributes.addAttribute("id", id);

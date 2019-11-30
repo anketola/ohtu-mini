@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Link extends Bookmark {
 
-  private String url;
+  private String link;
   private String type = "link";
 
 }
