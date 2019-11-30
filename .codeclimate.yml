@@ -6,4 +6,3 @@ plugins:
 exclude_patterns:
   - "!**/test"
   - "config/"
-  - "**/test/"
