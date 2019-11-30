@@ -5,7 +5,7 @@
     </head>
     <body>
         <header th:replace="layout :: header"></header>
-        <h1>Kirjan muokkaus</h1>
+        <h1>Muokkaa lukuvinkkiä</h1>
         <div th:if="${param.error}"  class="alert alert-danger notification" role="alert">
             <p>Saman niminen kirja on jo talletettu.</p>
         </div>
@@ -35,22 +35,6 @@
                     </td>
                 </tr>
             </table>
-        </form>
-        <form method="POST" th:action="@{/pictures/books/create}" enctype="multipart/form-data">
-            <table>
-                <tr>
-                    <td><input type="file" name="file" id="file"/></td>
-                    <td>
-                        <input type="hidden" name="id" th:value="${book.id}"/>
-                        <input type="hidden" name="url" th:value="${url}"/>
-                        <button type="submit">Lisää uusi kansikuva</button>
-                    </td>
-                </tr>
-                <tr><td>Kansikuva:</td></tr>
-                <tr>
-                    <td><span th:if="${book.picture!=null}"><img style="max-height:200px; max-width:200px" th:src="@{/pictures/{id}(id=${book.picture.id})}"/></span></td>
-                </tr>
-            </table>   
         </form>
         <footer th:replace="layout :: footer"></footer>
     </body>

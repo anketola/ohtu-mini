@@ -18,11 +18,6 @@ public class PictureController {
   @Autowired
   private PictureService pictureService;
 
-  @GetMapping("/testarea")
-  public String showTestArea() {
-    return "devtemplate";
-  }
-
   @PostMapping("/pictures/books/create")
   public String createBookImage(RedirectAttributes redirectAttributes, @RequestParam("file") MultipartFile file, @RequestParam String url, @RequestParam long id) throws IOException {
     pictureService.newPicture(file, "book", id);
@@ -37,13 +32,4 @@ public class PictureController {
     return pictureService.getPicture(id);
   }
   
-  private String redirectToSameListing(String url) {
-    if (url.contains("unread")) {
-      return "redirect:/books/list/unread";
-    } else if (url.contains("read")) {
-      return "redirect:/books/list/read";
-    }
-    return "redirect:/books/list";
-  }
-
 }
