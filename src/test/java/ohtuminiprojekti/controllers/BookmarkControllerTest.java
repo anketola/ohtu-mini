@@ -56,7 +56,7 @@ public class BookmarkControllerTest {
   }
 
   @Test
-  public void unreadBookmarksReturnsBookmarksmodel () throws Exception {
+  public void unreadBookmarksReturnsBookmarksmodel() throws Exception {
     mockMvc.perform(
         get("/bookmarks/list/unread"))
         .andExpect(model()
@@ -64,7 +64,7 @@ public class BookmarkControllerTest {
   }
 
   @Test
-  public void readBooksReturnsBookmarksModel () throws Exception {
+  public void readBooksReturnsBookmarksModel() throws Exception {
     mockMvc.perform(
         get("/bookmarks/list/read"))
         .andExpect(model()

@@ -61,11 +61,11 @@ public class BookServiceTest {
     service.existingBook("b1title");
     Mockito.verify(repo, Mockito.times(1)).findByTitle("b1title");
   }
-  
+
   @Test
   public void existingBookWithSameTitleSearchesDatabase() {
     service.existingBook("b2title");
     Mockito.verify(repo, Mockito.times(1)).findByTitle("b2title");
   }
- 
+
 }

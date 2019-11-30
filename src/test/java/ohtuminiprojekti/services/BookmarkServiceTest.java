@@ -1,17 +1,13 @@
 package ohtuminiprojekti.services;
 
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 
 import java.util.ArrayList;
 import java.util.List;
-import ohtuminiprojekti.dao.BookRepository;
 import ohtuminiprojekti.dao.BookmarkRepository;
-import ohtuminiprojekti.domain.Book;
 import ohtuminiprojekti.domain.Bookmark;
 import org.junit.Assert;
 import org.junit.Before;

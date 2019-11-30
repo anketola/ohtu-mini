@@ -31,5 +31,5 @@ public class PictureController {
   public byte[] getPicture(@PathVariable Long id) {
     return pictureService.getPicture(id);
   }
-  
+
 }

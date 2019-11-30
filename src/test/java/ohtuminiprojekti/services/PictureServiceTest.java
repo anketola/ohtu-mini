@@ -1,26 +1,21 @@
-
 package ohtuminiprojekti.services;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import ohtuminiprojekti.dao.BookRepository;
-import ohtuminiprojekti.dao.PictureRepository;
-import ohtuminiprojekti.domain.Book;
-import ohtuminiprojekti.domain.Picture;
-import static org.junit.Assert.assertEquals;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+
+import java.io.IOException;
+import ohtuminiprojekti.dao.BookRepository;
+import ohtuminiprojekti.dao.PictureRepository;
+import ohtuminiprojekti.domain.Book;
+import ohtuminiprojekti.domain.Picture;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.multipart.MultipartFile;
@@ -36,7 +31,7 @@ public class PictureServiceTest {
 
   @Mock
   BookRepository bookRepo;
-  
+
 
   @Test
   public void newPictureIsSaved() throws IOException {
@@ -50,7 +45,7 @@ public class PictureServiceTest {
     verify(book, times(1)).setPicture(any(Picture.class));
     verify(book, times(1)).getPicture();
   }
-  
+
   @Test
   public void newPictureIsNotSavedWhenFileNotJPG() throws IOException {
     MultipartFile file = mock(MultipartFile.class);
@@ -62,7 +57,7 @@ public class PictureServiceTest {
     service.newPicture(file, "book", 1L);
     verify(book, times(0)).setPicture(any(Picture.class));
   }
-  
+
   @Test
   public void newPictureIsNotSavedWhenTypeNotBook() throws IOException {
     MultipartFile file = mock(MultipartFile.class);
@@ -74,7 +69,7 @@ public class PictureServiceTest {
     service.newPicture(file, "link", 1L);
     verify(book, times(0)).setPicture(any(Picture.class));
   }
-  
+
   @Test
   public void pictureContentIsSwitchedIfBookHasOne() throws IOException {
     MultipartFile file = mock(MultipartFile.class);
@@ -88,14 +83,14 @@ public class PictureServiceTest {
     verify(book, times(2)).getPicture();
     verify(picture, times(1)).setContent(any(byte[].class));
   }
-  
+
   @Test
   public void pictureContentCanBeRetrieved() throws IOException {
-    
+
     Picture picture = mock(Picture.class);
     when(pictureRepo.getOne(1L)).thenReturn(picture);
     when(picture.getContent()).thenReturn(new byte[10]);
-    byte[] content = service.getPicture(1L);    
+    byte[] content = service.getPicture(1L);
     verify(pictureRepo, times(1)).getOne(1L);
     verify(picture, times(1)).getContent();
   }
