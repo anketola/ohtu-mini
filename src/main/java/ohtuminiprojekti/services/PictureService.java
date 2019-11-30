@@ -23,11 +23,15 @@ public class PictureService {
   public void newPicture(MultipartFile file, String type, Long id) throws IOException {
     if (file.getContentType().equals("image/jpeg")) {
       if (type.equals("book")) {
-        Picture newPicture = new Picture();
-        newPicture.setContent(file.getBytes());
         Book book = bookRepository.getOne(id);
-        //book.setPicture(newPicture);
-        newPicture.setBook(book);
+        if (book.getPicture() == null) {
+          Picture newPicture = new Picture();
+          newPicture.setContent(file.getBytes());
+          book.setPicture(newPicture);
+          newPicture.setBook(book);
+        } else {
+          book.getPicture().setContent(file.getBytes());
+        }
       }
     }
   }

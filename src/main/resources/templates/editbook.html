@@ -5,20 +5,20 @@
     </head>
     <body>
         <header th:replace="layout :: header"></header>
-        <h1>Kirjan muokkaus</h1>
+        <h1>Muokkaa lukuvinkkiä</h1>
         <div th:if="${param.error}"  class="alert alert-danger notification" role="alert">
             <p>Saman niminen kirja on jo talletettu.</p>
         </div>
         <form method="POST" th:action="@{/book/edit}">
             <table>
                 <tr>
-                    <td>Kirjan nimi:</td>
+                    <td>Nimi:</td>
                     <td>
                         <input type="text" name="title" th:value="${book.title}" required/>
                     </td>
                 </tr>
                 <tr>
-                    <td>Kirjailija:</td>
+                    <td>Tekijä:</td>
                     <td>
                         <input type="text" name="author" th:value="${book.author}" required/>
                     </td>
