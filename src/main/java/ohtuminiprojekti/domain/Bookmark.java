@@ -19,7 +19,9 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 )
 public class Bookmark extends AbstractPersistable<Long> {
 
-  private String type, name, comment;
+  private String type;
+  private String name;
+  private String comment;
   private boolean hasBeenRead;
 
   @OneToOne(cascade = CascadeType.ALL, optional = true, orphanRemoval = true)

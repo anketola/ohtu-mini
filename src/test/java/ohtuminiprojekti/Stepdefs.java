@@ -123,6 +123,22 @@ public class Stepdefs {
     pageHasContent(bookmarkName);
   }
 
+  @Then("an error message with text {string} is displayed")
+  public void an_error_message_with_text_is_displayed(String errorString) {
+    pageHasContent(errorString);
+  }
+  
+  @When("button to save a book is pressed")
+  public void button_to_save_a_book_is_pressed() {
+    WebElement element = driver.findElement(By.name("bookSubmit"));
+    element.click();
+  }
+  
+  @Then("an error message with text {string} is not displayed")
+  public void an_error_message_with_text_is_not_displayed(String errorString) {
+    pageDoesNotHaveContent(errorString);
+  }
+
   
   @When("button to remove an entry is clicked")
   public void button_to_remove_an_entry_is_clicked() {
