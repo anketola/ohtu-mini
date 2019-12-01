@@ -4,7 +4,11 @@
 
 Helsingin yliopiston tietojenkäsittelytieteen laitoksen syksyn 2019 ohjelmistotuotannon kurssin ryhmäprojektina toteutettava miniprojekti. Asiakkaamme ovat ammattilaisia tietojenkäsittelyn ammattikirjallisuuden lukijoita - onneksi mekin olemenne "ammattilaisia".
 
-Ryhmä: mergehell - *"Extreme Agile DevOps since November 2019"*
+[Ensimmäinen release](https://github.com/anketola/ohtu-mini/releases/tag/0.1 "Ensimmäinen release")
+
+Ryhmä: mergehell - *"Epic Extreme Advanced Agile DevOps since November 2019"*
+
+[Sovelluslinkki](https://secret-ravine-95065.herokuapp.com/ "Sovellus Herokussa")
 
 ## Dokumentaatiota
 
