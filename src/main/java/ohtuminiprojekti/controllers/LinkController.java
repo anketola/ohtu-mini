@@ -22,7 +22,7 @@ public class LinkController {
       linkService.newLink(name, link, comment);
       return "redirect:/bookmarks/list";
     } else {
-      return "redirect:/bookmarks/create?error";
+      return "redirect:/link/create?error";
     }
   }
 
@@ -40,7 +40,7 @@ public class LinkController {
 
   @PostMapping("/link/edit")
   public String editLink(RedirectAttributes redirectAttributes, @RequestParam long id, @RequestParam String url, @RequestParam String name, @RequestParam String link, @RequestParam String comment) {
-    if (!linkService.existingLinkByUrl(link)) {
+    if (linkService.getById(id).getLink().equals(link) || !linkService.existingLinkByUrl(link)) {
       linkService.edit(id, name, link, comment);
       return Utils.redirectToSameListing(url);
     }

@@ -1,6 +1,7 @@
 package ohtuminiprojekti.controllers;
 
 import ohtuminiprojekti.Utils;
+import ohtuminiprojekti.domain.Book;
 import ohtuminiprojekti.services.BookService;
 import ohtuminiprojekti.services.BookmarkService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +22,11 @@ public class BookController {
 
   @PostMapping("/book/create")
   public String createBook(@RequestParam String title, @RequestParam String author, @RequestParam String comment) {
-    if (!bookmarkService.bookmarkByNameExists(title) && !bookService.existingBook(title)) {
+    if (!bookService.existingBook(title, author)) {
       bookService.newBook(title, author, comment);
       return "redirect:/bookmarks/list";
     } else {
-      return "redirect:/bookmarks/create?error";
+      return "redirect:/book/create?error";
     }
   }
 
@@ -43,7 +44,8 @@ public class BookController {
 
   @PostMapping("/book/edit")
   public String edit(RedirectAttributes redirectAttributes, @RequestParam long id, @RequestParam String url, @RequestParam String title, @RequestParam String author, @RequestParam String comment) {
-    if (!bookService.existingBook(title)) {
+    Book book = bookService.getById(id);
+    if ((book.getAuthor().equals(author) && book.getTitle().equals(title)) || !bookService.existingBook(title, author)) {
       bookService.edit(id, title, author, comment);
       bookmarkService.setName(id, title);
       return Utils.redirectToSameListing(url);

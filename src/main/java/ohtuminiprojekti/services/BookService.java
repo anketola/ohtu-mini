@@ -13,7 +13,7 @@ public class BookService {
 
   public Book newBook(String titleString, String authorString, String comment) {
     Book book = new Book();
-    book.setName(titleString);
+    book.setName(titleString + " - " + authorString);
     book.setTitle(titleString);
     book.setAuthor(authorString);
     book.setComment(comment);
@@ -26,14 +26,14 @@ public class BookService {
     return bookRepository.getOne(id);
   }
 
-  public boolean existingBook(String title) {
-    Book existingBook = bookRepository.findByTitle(title);
-    return existingBook != null;
+  public boolean existingBook(String title, String author) {
+    Book book = bookRepository.findByTitleAndAuthor(title, author);
+    return book != null;
   }
 
   public void edit(long id, String title, String author, String comment) {
     Book book = bookRepository.getOne(id);
-    book.setName(title);
+    book.setName(title + " - " + author);
     book.setTitle(title);
     book.setAuthor(author);
     book.setComment(comment);

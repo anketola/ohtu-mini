@@ -58,14 +58,14 @@ public class BookServiceTest {
 
   @Test
   public void existingBookIsFound() {
-    service.existingBook("b1title");
-    Mockito.verify(repo, Mockito.times(1)).findByTitle("b1title");
+    service.existingBook("b1title", "b1author");
+    Mockito.verify(repo, Mockito.times(1)).findByTitleAndAuthor("b1title", "b1author");
   }
 
   @Test
   public void existingBookWithSameTitleSearchesDatabase() {
-    service.existingBook("b2title");
-    Mockito.verify(repo, Mockito.times(1)).findByTitle("b2title");
+    service.existingBook("b2title", "b2author");
+    Mockito.verify(repo, Mockito.times(1)).findByTitleAndAuthor("b2title", "b2author");
   }
 
 }
