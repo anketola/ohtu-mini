@@ -85,6 +85,45 @@ public class Stepdefs {
     pageHasContent("Poista");
   }
 
+  @Then("button to mark entry as read is shown")
+  public void button_to_mark_entry_as_read_is_shown() {
+    pageHasContent("Merkitse luetuksi");
+  }
+ 
+  @When("button to mark entry read is pressed")
+  public void button_to_mark_entry_read_is_pressed() {
+    WebElement element = driver.findElement(By.name("markEntryAsRead"));
+    element.click();
+  }
+  
+  @Then("bookmark has changed status to read")
+   public void bookmark_has_changed_status_to_read() {
+    pageHasContent("Merkitse lukemattomaksi");
+  }
+
+  @When("button to mark entry unread is pressed")
+  public void button_to_mark_entry_unread_is_pressed() {
+    WebElement element = driver.findElement(By.name("markEntryAsUnread"));
+    element.click();
+  }
+  
+  @Then("bookmark has changed status to unread")
+  public void bookmark_has_changed_status_to_unread() {
+    pageHasContent("Merkitse luetuksi");
+  }
+
+  @When("command list unread books is selected")
+  public void command_list_unread_books_is_selected() {
+    driver.get(baseUrl);
+    clickLinkWithText("Listaa lukemattomat lukuvinkit");   
+  }
+  
+  @Then("bookmark {string} is listed")
+  public void bookmark_is_listed(String bookmarkName) {
+    pageHasContent(bookmarkName);
+  }
+
+  
   @When("button to remove an entry is clicked")
   public void button_to_remove_an_entry_is_clicked() {
     WebElement element = driver.findElement(By.name("removeButton"));

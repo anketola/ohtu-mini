@@ -32,17 +32,17 @@
                                 <form th:if="${bookmark.hasBeenRead == false}" style="display:inline" th:action="@{/bookmarks/mark}" method="post">
                                     <input type="hidden" name="id" th:value="${bookmark.id}" />
                                     <input type="hidden" name="url" th:value="${#httpServletRequest.requestURI}"/>
-                                    <input type="submit" value="Merkitse luetuksi" class="btn btn-sm" onclick="return alert('Merkitty luetuksi.');"/>
+                                    <input type="submit" name="markEntryAsRead" value="Merkitse luetuksi" class="btn btn-sm" onclick="return alert('Merkitty luetuksi.');"/>
                                 </form>
                                 <form th:unless="${bookmark.hasBeenRead == false}" style="display:inline" th:action="@{/bookmarks/unmark}" method="post">
                                     <input type="hidden" name="id" th:value="${bookmark.id}" />
                                     <input type="hidden" name="url" th:value="${#httpServletRequest.requestURI}"/>
-                                    <input type="submit" value="Merkitse lukemattomaksi" class="btn btn-sm" onclick="return alert('Merkitty lukemattomaksi.');"/>
+                                    <input type="submit" name="markEntryAsUnread" value="Merkitse lukemattomaksi" class="btn btn-sm" onclick="return alert('Merkitty lukemattomaksi.');"/>
                                 </form>
                                 <form style="display:inline" th:action="${'/' + bookmark.type + '/edit'}" method="get">
                                     <input type="hidden" name="id" th:value="${bookmark.id}" />
                                     <input type="hidden" name="url" th:value="${#httpServletRequest.requestURI}"/>
-                                    <input type="submit" value="Muokkaa" class="btn btn-warning btn-sm"/>
+                                    <input type="submit" name="editEntryButton" value="Muokkaa" class="btn btn-warning btn-sm"/>
                                 </form>
                                 <form style="display:inline" th:action="@{/bookmarks/delete}" method="post">
                                     <input type="hidden" name="id" th:value="${bookmark.id}" />
