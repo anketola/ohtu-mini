@@ -31,6 +31,7 @@ public class Stepdefs {
 
     this.driver = new ModifiedHtmlUnitDriver();
     //this.driver = new FirefoxDriver();
+    ((ModifiedHtmlUnitDriver) driver).setJavascriptEnabled(true);
   }
 
   @After
@@ -94,8 +95,8 @@ public class Stepdefs {
   public void an_alert_with_text_is_shown(String alertText) {
     // Doesn't pass with HtmlUnitDriver, does on Firefox though 
     
-    //String returnedText = driver.switchTo().alert().getText();
-    //Assert.assertEquals(returnedText, alertText);
+    String returnedText = driver.switchTo().alert().getText();
+    Assert.assertEquals(returnedText, alertText);
   }
 
   
