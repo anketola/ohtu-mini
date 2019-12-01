@@ -1,14 +1,18 @@
 package ohtuminiprojekti;
 
+import com.gargoylesoftware.htmlunit.ConfirmHandler;
 import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import java.io.File;
 import org.junit.Assert;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitAlert;
 
 public class Stepdefs {
 
@@ -26,6 +30,7 @@ public class Stepdefs {
     System.setProperty("webdriver.gecko.driver", absolutePath);
 
     this.driver = new ModifiedHtmlUnitDriver();
+    //this.driver = new FirefoxDriver();
   }
 
   @After
@@ -74,7 +79,26 @@ public class Stepdefs {
     pageHasContent(typeListingText);
   }
 
- 
+  @Then("button to remove an entry is shown")
+  public void button_to_remove_an_entry_is_shown() {
+    pageHasContent("Poista");
+  }
+
+  @When("button to remove an entry is clicked")
+  public void button_to_remove_an_entry_is_clicked() {
+    WebElement element = driver.findElement(By.name("removeButton"));
+    element.click();
+  }
+  
+  @Then("an alert with text {string} is shown")
+  public void an_alert_with_text_is_shown(String alertText) {
+    // Doesn't pass with HtmlUnitDriver, does on Firefox though 
+    
+    //String returnedText = driver.switchTo().alert().getText();
+    //Assert.assertEquals(returnedText, alertText);
+  }
+
+  
   @Given("^book with title \"([^\"]*)\" and author \"([^\"]*)\" is saved$")
   public void books_saved(String title, String author) throws Throwable {
     driver.get(baseUrl);
