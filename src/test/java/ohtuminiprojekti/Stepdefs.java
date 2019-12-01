@@ -52,6 +52,29 @@ public class Stepdefs {
   public void no_books_saved() throws Throwable {
   }
 
+  @Given("command save internet resource is selected")
+  public void command_save_internet_resource_is_selected() {
+  driver.get(baseUrl);
+  clickLinkWithText("Lisää lukuvinkki(linkki)");
+  }
+
+  @When("url information title {string} and url {string} are entered")
+  public void url_information_title_and_url_are_entered(String title, String urlstring) {
+    enterUrlInformation(title, urlstring);
+  }
+  
+  @Then("internet resource with name {string} is saved")
+  public void internet_resource_with_name_is_saved(String name) {
+    pageHasContent("Lista lukuvinkeistä");
+    pageHasContent(name);
+  }
+
+  @Then("a bookmark with a type {string} is displayed")
+  public void a_bookmark_with_a_type_is_displayed(String typeListingText) {
+    pageHasContent(typeListingText);
+  }
+
+ 
   @Given("^book with title \"([^\"]*)\" and author \"([^\"]*)\" is saved$")
   public void books_saved(String title, String author) throws Throwable {
     driver.get(baseUrl);
@@ -117,6 +140,15 @@ public class Stepdefs {
     }
   }
 
+   private void enterUrlInformation(String name, String urlstring) {
+    WebElement element = driver.findElement(By.name("name"));
+    element.sendKeys(name);
+    element = driver.findElement(By.name("link"));
+    element.sendKeys(urlstring);
+    element = driver.findElement(By.name("linkSubmit"));
+    element.submit();
+  }
+  
   private void enterBookInformation(String title, String author) {
     WebElement element = driver.findElement(By.name("title"));
     element.sendKeys(title);
