@@ -3,6 +3,13 @@ plugins:
     enabled: true
     config:
       file: "config/checkstyle/checkstyle.xml"
+  duplication:
+    enabled: true
+    config:
+      languages:
+        java:
+          patterns:
+            - "!**/test"
 exclude_patterns:
   - "!**/test"
   - "config/"
