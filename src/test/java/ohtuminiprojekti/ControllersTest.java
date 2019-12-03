@@ -16,6 +16,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
@@ -37,13 +38,11 @@ public class ControllersTest {
   }
 
   @Test
-  public void getIndexWorks() throws Exception {
-    mockMvc.perform(get("/")).andExpect(status().isOk());
+  public void getIndexRedirectsToListingPage() throws Exception {
+    
+    mockMvc.perform(get("/"))
+        .andExpect(status().is3xxRedirection())
+            .andExpect(redirectedUrl("/bookmarks/list")).andReturn();
 
-    MvcResult res = mockMvc.perform(get("/"))
-        .andReturn();
-
-    String content = res.getResponse().getContentAsString();
-    Assert.assertTrue(content.contains("Tervetuloa lukuvinkkisovellukseen"));
   }
 }

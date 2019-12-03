@@ -8,6 +8,6 @@ public class Controllers {
 
   @GetMapping("/")
   public String indexRoot() {
-    return "index";
+    return "redirect:/bookmarks/list";
   }
 }
