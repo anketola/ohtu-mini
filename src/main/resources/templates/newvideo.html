@@ -5,11 +5,11 @@
 </head>
 <body>
 <header th:replace="layout :: header"></header>
-<h1>Lukuvinkki (url) lisääminen</h1>
+<h1>Lukuvinkki (video) lisääminen</h1>
 <div th:if="${param.error}"  class="alert alert-danger notification" role="alert">
     <p>Lukuvinkki on jo tallennettu!</p>
 </div>
-<form method="POST" th:action="@{/link/create}">
+<form method="POST" th:action="@{/video/create}">
     <table>
         <tr>
             <td>Lukuvinkin nimi:</td>
@@ -32,7 +32,7 @@
         </div>
         <tr>
             <td>
-                <input name="linkSubmit" type="submit" value="Lisää uusi linkkivinkki"/>
+                <input name="videoSubmit" type="submit" value="Lisää uusi linkkivinkki"/>
             </td>
         </tr>
     </table>

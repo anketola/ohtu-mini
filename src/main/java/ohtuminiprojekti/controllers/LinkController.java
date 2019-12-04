@@ -17,13 +17,28 @@ public class LinkController {
   private LinkService linkService;
 
   @PostMapping("/link/create")
-  public String createLink(@RequestParam String name, @RequestParam String link, @RequestParam String comment) {
+  public String createLink(RedirectAttributes redirectAttributes, @RequestParam String name, @RequestParam String link, @RequestParam String comment) {
     if (!linkService.existingLinkByUrl(link)) {
       linkService.newLink(name, link, comment);
       return "redirect:/bookmarks/list";
     } else {
+      redirectAttributes.addAttribute("url", link);
       return "redirect:/link/create?error";
     }
+  }
+  
+  @GetMapping("/link/query")
+  public String askLink() {
+      return "linkquery";
+  }
+  
+  @PostMapping("/link/query")
+  public String askLink(RedirectAttributes redirectAttributes, @RequestParam String link) {
+      if(!linkService.isURL(link)) {
+          return "redirect:/link/query?error";
+      }
+      redirectAttributes.addAttribute("url", link);
+      return "redirect:/link/create";
   }
 
   @GetMapping("/link/edit")
@@ -34,7 +49,9 @@ public class LinkController {
   }
 
   @GetMapping("/link/create")
-  public String newLink() {
+  public String newLink(Model model, @RequestParam String url) {
+    model.addAttribute("name", linkService.getTitleOfUrl(url));
+    model.addAttribute("link", url);
     return "newlink";
   }
 

@@ -4,29 +4,29 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Scanner;
-import ohtuminiprojekti.dao.LinkRepository;
+import ohtuminiprojekti.dao.VideoRepository;
 import ohtuminiprojekti.domain.Link;
+import ohtuminiprojekti.domain.Video;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LinkService {
-
+public class VideoService {
   @Autowired
-  private LinkRepository linkRepository;
+  private VideoRepository videoRepository;
 
-  public Link newLink(String name, String url, String comment) {
-    Link link = new Link();
-    link.setName(name);
-    link.setLink(url);
-    link.setComment(comment);
-    link.setHasBeenRead(false);
-    linkRepository.save(link);
-    return link;
+  public Video newVideo(String name, String url, String comment) {
+    Video video = new Video();
+    video.setName(name);
+    video.setLink(url);
+    video.setComment(comment);
+    video.setHasBeenRead(false);
+    videoRepository.save(video);
+    return video;
   }
 
-  public Link getById(long id) {
-    return linkRepository.getOne(id);
+  public Video getById(long id) {
+    return videoRepository.getOne(id);
   }
   
   public boolean isURL(String url) {
@@ -37,16 +37,16 @@ public class LinkService {
     return false;
   }
 
-  public boolean existingLinkByUrl(String url) {
-    return linkRepository.findByLink(url) != null;
+  public boolean existingVideoByUrl(String url) {
+    return videoRepository.findByLink(url) != null;
   }
 
   public void edit(long id, String name, String url, String comment) {
-    Link link = linkRepository.getOne(id);
-    link.setLink(url);
-    link.setName(name);
-    link.setComment(comment);
-    linkRepository.save(link);
+    Video video = videoRepository.getOne(id);
+    video.setLink(url);
+    video.setName(name);
+    video.setComment(comment);
+    videoRepository.save(video);
   }
 
   public String getTitleOfUrl(String url) {
@@ -61,5 +61,5 @@ public class LinkService {
     } catch (IOException ex) {
     } 
     return title;
-  }
+  } 
 }

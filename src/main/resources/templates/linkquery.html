@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout :: head">
+        <title></title>
+    </head>
+    <body>
+        <header th:replace="layout :: header"></header>
+        <h1>Lukuvinkki (url) lisääminen</h1>
+        <div th:if="${param.error}"  class="alert alert-danger notification" role="alert">
+            <p>Syötä oikea osoite!</p>
+        </div>
+        <form method="POST" th:action="@{/link/query}">
+            <table>
+                <tr>
+                    <td>Url:</td>
+                    <td>
+                        <input type="text" name="link" required/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input name="linkSubmit" type="submit" value="Siirry tietojen muokkaukseen"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <footer th:replace="layout :: footer"></footer>
+    </body>
+</html>

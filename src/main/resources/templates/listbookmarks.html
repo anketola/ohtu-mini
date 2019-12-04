@@ -26,7 +26,7 @@
                 <span th:if="${bookmark.type == 'book'}">
                     <span style="width: 90%; overflow: auto; position: absolute; top: -18px; white-space: nowrap;" th:text=${bookmark.author}></span>
                 </span>
-                <span th:if="${bookmark.type == 'link'}">
+                <span th:unless="${bookmark.type == 'book'}">
                     <a th:href="${bookmark.link}" target="_blank"><span style="width: 90%; overflow: auto; position: absolute; top: -18px; white-space: nowrap" th:text="${bookmark.link}"></span></a>
                 </span>
             </td>
