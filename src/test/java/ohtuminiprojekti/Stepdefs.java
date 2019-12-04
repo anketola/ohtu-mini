@@ -60,8 +60,8 @@ public class Stepdefs {
 
   @Given("command save internet resource is selected")
   public void command_save_internet_resource_is_selected() {
-  driver.get(baseUrl);
-  clickLinkWithText("Lisää lukuvinkki(linkki)");
+    driver.get(baseUrl);
+    clickLinkWithText("Lisää lukuvinkki(linkki)");
   }
 
   @When("url information title {string} and url {string} are entered")
@@ -224,6 +224,12 @@ public class Stepdefs {
     pageHasContent(string);
   }
 
+  @Then("a message {string} is not displayed")
+  public void a_message_is_not_displayed(String message) {
+    pageDoesNotHaveContent(message);
+  }
+
+  
   private void clickLinkWithText(String text) {
     int trials = 0;
     while (trials++ < 5) {
