@@ -7,7 +7,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 import ohtuminiprojekti.dao.BookmarkRepository;
-import ohtuminiprojekti.domain.Bookmark;
+import ohtuminiprojekti.domain.Book;
+import ohtuminiprojekti.domain.Link;
 import ohtuminiprojekti.services.BookmarkService;
 import org.junit.Assert;
 import org.junit.Before;
@@ -37,22 +38,25 @@ public class BookmarkControllerTest {
   @Autowired
   BookmarkService bookmarkService;
 
-  Bookmark bm1, bm2;
+  Book book1;
+  Link link1;
 
   @Before
   public void setUp() {
-    bm1 = new Bookmark();
-    bm1.setType("book");
-    bm1.setName("bm1");
-    bm1.setComment("comcom");
-    bm1.setHasBeenRead(false);
-    bm2 = new Bookmark();
-    bm2.setType("link");
-    bm2.setName("bm2");
-    bm2.setComment(null);
-    bm2.setHasBeenRead(true);
-    bookmarkRepository.save(bm1);
-    bookmarkRepository.save(bm2);
+    book1 = new Book();
+    book1.setType("book");
+    book1.setName("bm1");
+    book1.setComment("comcom");
+    book1.setAuthor("lol");
+    book1.setHasBeenRead(false);
+    link1 = new Link();
+    link1.setType("link");
+    link1.setLink("lel");
+    link1.setName("bm2");
+    link1.setComment(null);
+    link1.setHasBeenRead(true);
+    bookmarkRepository.save(book1);
+    bookmarkRepository.save(link1);
   }
 
   @Test
@@ -75,35 +79,35 @@ public class BookmarkControllerTest {
   public void bookmarkCanBeMarkAsRead() throws Exception {
     mockMvc.perform(
         MockMvcRequestBuilders.post("/bookmarks/mark")
-            .param("id", Long.toString(bm1.getId()))
+            .param("id", Long.toString(book1.getId()))
             .param("url", "unread")
     ).andExpect(status().is3xxRedirection())
         .andExpect(redirectedUrl("/bookmarks/list/unread")).andReturn();
 
-    Assert.assertEquals(true, bookmarkRepository.getOne(bm1.getId()).hasBeenRead());
+    Assert.assertEquals(true, bookmarkRepository.getOne(book1.getId()).hasBeenRead());
   }
 
   @Test
   public void bookmarkCanBeMarkAsUnread() throws Exception {
     mockMvc.perform(
         MockMvcRequestBuilders.post("/bookmarks/unmark")
-            .param("id", Long.toString(bm2.getId()))
+            .param("id", Long.toString(link1.getId()))
             .param("url", "read")
     ).andExpect(status().is3xxRedirection())
         .andExpect(redirectedUrl("/bookmarks/list/read")).andReturn();
 
-    Assert.assertEquals(false, bookmarkRepository.getOne(bm2.getId()).hasBeenRead());
+    Assert.assertEquals(false, bookmarkRepository.getOne(link1.getId()).hasBeenRead());
   }
 
   @Test
   public void bookmarkCanBeDeleted() throws Exception {
     mockMvc.perform(
         MockMvcRequestBuilders.post("/bookmarks/delete")
-            .param("id", Long.toString(bm2.getId()))
+            .param("id", Long.toString(link1.getId()))
             .param("url", "read")
     ).andExpect(status().is3xxRedirection())
         .andExpect(redirectedUrl("/bookmarks/list/read")).andReturn();
 
-    Assert.assertEquals(false, bookmarkRepository.existsById(bm2.getId()));
+    Assert.assertEquals(false, bookmarkRepository.existsById(link1.getId()));
   }
 }
