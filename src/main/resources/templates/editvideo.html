@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <title></title>
+</head>
+<body>
+<header th:replace="layout :: header"></header>
+<h1>Videon muokkaus</h1>
+<div th:if="${param.error}"  class="alert alert-danger notification" role="alert">
+    <p>Kyseinen video on jo talletettu.</p>
+</div>
+<form method="POST" th:action="@{/video/edit}">
+    <table>
+        <tr>
+            <td>Videon nimi:</td>
+            <td>
+                <input type="text" name="name" th:value="${video.name}" required/>
+            </td>
+        </tr>
+        <tr>
+            <td>Url:</td>
+            <td>
+                <input type="text" name="link" th:value="${video.link}" required/>
+            </td>
+        </tr>
+        <tr>
+            <td>Kommentti:</td>
+            <td>
+                <input type="textarea" name="comment" th:value="${video.comment}"/>
+            </td>
+        </tr>
+        <td>
+            <input type="hidden" name="url" th:value="${url}"/>
+            <input type="hidden" name="id" th:value="${video.id}"/>
+            <input name="videoSubmit" type="submit" value="Muokkaa"/>
+        </td>
+        </tr>
+    </table>
+</form>
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>
