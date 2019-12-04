@@ -55,7 +55,7 @@ public class BookControllerTest {
   @Test
   public void bookCanBeEdited() throws Exception {
     Book book = new Book();
-    book.setName("aybabtu");
+    book.setTitle("aybabtu");
     book.setAuthor("123");
     bookRepository.save(book);
 

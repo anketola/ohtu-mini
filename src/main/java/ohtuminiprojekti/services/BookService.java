@@ -13,7 +13,7 @@ public class BookService {
 
   public Book newBook(String titleString, String authorString, String comment) {
     Book book = new Book();
-    book.setName(titleString + " - " + authorString);
+    book.setName(titleString);
     book.setTitle(titleString);
     book.setAuthor(authorString);
     book.setComment(comment);
@@ -33,7 +33,7 @@ public class BookService {
 
   public void edit(long id, String title, String author, String comment) {
     Book book = bookRepository.getOne(id);
-    book.setName(title + " - " + author);
+    book.setName(title);
     book.setTitle(title);
     book.setAuthor(author);
     book.setComment(comment);

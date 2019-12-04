@@ -9,9 +9,10 @@
 <table class="table" id="myTable">
     <thead>
     <tr>
-        <th style="width: 10%">Nimi</th>
+        <th style="width: 20%">Nimi</th>
+        <th style="width: 20%">Kirjoittaja/Linkki</th>
         <th style="width: 10%">Tyyppi</th>
-        <th>Luettu</th>
+        <th style="width: 10%">Luettu</th> 
         <th></th>
     </tr>
     </thead>
@@ -19,14 +20,22 @@
     <tr th:each="bookmark: ${bookmarks}" style="line-height: 50px; min-height: 50px; height: 50px">
         <strong>
             <td style="position:relative;">
-                <span style="width: 90%; overflow: auto; position: absolute; top: -18px;" th:text=${bookmark.name}></span>
+                <span style="width: 90%; overflow: auto; position: absolute; top: -18px; white-space: nowrap;" th:text=${bookmark.name}></span>
             </td>
             <td style="position:relative;">
-                <span style="width: 90%; overflow: auto; position: absolute; top: -18px;" th:text=${bookmark.type}></span>
+                <span th:if="${bookmark.type == 'book'}">
+                    <span style="width: 90%; overflow: auto; position: absolute; top: -18px; white-space: nowrap;" th:text=${bookmark.author}></span>
+                </span>
+                <span th:if="${bookmark.type == 'link'}">
+                    <a th:href="${bookmark.link}" target="_blank"><span style="width: 90%; overflow: auto; position: absolute; top: -18px; white-space: nowrap" th:text="${bookmark.link}"></span></a>
+                </span>
             </td>
             <td style="position:relative;">
-                <span style="width: 90%; overflow: auto; position: absolute; top: -18px;" th:text=${bookmark.hasBeenRead}></span>
+                <span style="width: 90%; overflow: auto; position: absolute; top: -18px; white-space: nowrap;" th:text=${bookmark.type}></span>
             </td>
+            <td style="position:relative;">
+                <span style="width: 90%; overflow: auto; position: absolute; top: -18px; white-space: nowrap;" th:text=${bookmark.hasBeenRead}></span>
+            </td>            
             <td style="position:relative;">
                             <span>
                                 <form th:if="${bookmark.hasBeenRead == false}" style="display:inline" th:action="@{/bookmarks/mark}" method="post">
