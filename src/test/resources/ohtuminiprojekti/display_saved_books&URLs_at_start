@@ -1,0 +1,6 @@
+Feature: As an user, I can see a list of books and URLs when starting the application
+
+    Scenario: user starts the application and can see all his/her saved books and internet resources
+        # Given user starts the application
+        # When the applications starts running as it should
+        # Then all books and internet resources saved by the user are shown on first page
