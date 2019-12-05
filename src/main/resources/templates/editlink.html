@@ -5,38 +5,43 @@
 </head>
 <body>
 <header th:replace="layout :: header"></header>
-<h1>Linkin muokkaus</h1>
-<div th:if="${param.error}"  class="alert alert-danger notification" role="alert">
-    <p>Kyseinen linkki on jo talletettu.</p>
+
+<div class="container-fluid">
+        <div class="col-12">
+            <div class="row" style="margin-top:60px">
+            <div class="col-4"></div>
+                <div class="col-4">
+
+                <h1>Muokkaa linkkiä</h1>
+                <div th:if="${param.error}"  class="alert alert-warning notification" role="alert">
+                    <p>Linkki on jo tallennettu.</p>
+                </div>
+    
+                <form method="POST" th:action="@{/link/edit}">
+                <div class="form-group">
+                    <label for="nameInputField">Linkin nimi</label>
+                    <input type="text" name="name" id="nameInputField" class="form-control" th:value="${link.name}" required>
+                </div>
+                <div class="form-group">
+                    <label for="linkInputField">URL</label>
+                    <input type="text" name="link" id="linkInputField" class="form-control" th:value="${link.link}" required>
+                </div>
+                <div class="form-group">
+                    <label for="commentInputField">Kommentti</label>
+                    <input type="text" name="comment" id="commentInputField" class="form-control" th:value="${link.comment}">
+                </div>
+                <input type="hidden" name="url" th:value="${url}"/>
+                <input type="hidden" name="id" th:value="${link.id}"/>
+                <button name="linkSubmit" type="submit" class="btn btn-primary">Muokkaa</button>
+            </form>
+
+            </div>
+    
+        <div class="col-4"></div>
+    </div>
+    </div>
 </div>
-<form method="POST" th:action="@{/link/edit}">
-    <table>
-        <tr>
-            <td>Linkin nimi:</td>
-            <td>
-                <input type="text" name="name" th:value="${link.name}" required/>
-            </td>
-        </tr>
-        <tr>
-            <td>Url:</td>
-            <td>
-                <input type="text" name="link" th:value="${link.link}" required/>
-            </td>
-        </tr>
-        <tr>
-            <td>Kommentti:</td>
-            <td>
-                <input type="textarea" name="comment" th:value="${link.comment}"/>
-            </td>
-        </tr>
-        <td>
-            <input type="hidden" name="url" th:value="${url}"/>
-            <input type="hidden" name="id" th:value="${link.id}"/>
-            <input name="linkSubmit" type="submit" value="Muokkaa"/>
-        </td>
-        </tr>
-    </table>
-</form>
+
 <footer th:replace="layout :: footer"></footer>
 </body>
 </html>

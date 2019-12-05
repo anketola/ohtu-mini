@@ -5,38 +5,41 @@
 </head>
 <body>
 <header th:replace="layout :: header"></header>
-<h1>Lukuvinkki (url) lisääminen</h1>
-<div th:if="${param.error}"  class="alert alert-danger notification" role="alert">
-    <p>Lukuvinkki on jo tallennettu!</p>
+<div class="container-fluid">
+        <div class="col-12">
+            <div class="row" style="margin-top:60px">
+            <div class="col-4"></div>
+                <div class="col-4">
+
+    
+                <h1>Lisää kirja lukuvinkiksi</h1>
+                <div th:if="${param.error}"  class="alert alert-warning notification" role="alert">
+                    <p>Lukuvinkki on jo tallennettu!</p>
+                </div>
+    
+                <form method="POST" th:action="@{/link/create}">
+                <div class="form-group">
+                    <label for="nameInputField">Lukuvinkin nimi</label>
+                    <input type="text" name="name" id="nameInputField" class="form-control" th:value="${name}" required>
+                </div>
+                <div class="form-group">
+                    <label for="URLInputField">URL</label>
+                    <input name="link" id="URLInputField" class="form-control" th:value="${link}" required>
+                </div>
+                <div class="form-group">
+                    <label for="commentInputField">Kommentti</label>
+                    <input type="text" name="comment" id="commentInputField" class="form-control">
+                </div>
+                <button name="linkSubmit" type="submit" class="btn btn-primary">Lisää uusi lukuvinkki</button>
+            </form>
+
+            </div>
+    
+        <div class="col-4"></div>
+    </div>
+    </div>
 </div>
-<form method="POST" th:action="@{/link/create}">
-    <table>
-        <tr>
-            <td>Lukuvinkin nimi:</td>
-            <td>
-                <input type="text" name="name" th:value="${name}" required/>
-            </td>
-        </tr>
-        <tr>
-            <td>Url:</td>
-            <td>
-                <input type="text" name="link" th:value="${link}" required/>
-            </td>
-        </tr>
-        <tr>
-            <td>Kommentti:</td>
-            <td>
-                <input type="textarea" name="comment"/>
-            </td>
-        </tr>
-        </div>
-        <tr>
-            <td>
-                <input name="linkSubmit" type="submit" value="Lisää uusi linkkivinkki"/>
-            </td>
-        </tr>
-    </table>
-</form>
+
 <footer th:replace="layout :: footer"></footer>
 </body>
 </html>

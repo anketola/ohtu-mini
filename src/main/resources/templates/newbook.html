@@ -5,38 +5,40 @@
     </head>
     <body>
         <header th:replace="layout :: header"></header>
-        <h1>Lukuvinkki (kirja) lisääminen</h1>
-        <div th:if="${param.error}"  class="alert alert-danger notification" role="alert">
-            <p>Lukuvinkki on jo tallennettu!</p>
-        </div>
-        <form method="POST" th:action="@{/book/create}">
-            <table>
-                <tr>
-                    <td>Nimi:</td>
-                    <td>
-                        <input type="text" name="title" required/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Tekijä:</td>
-                    <td>
-                        <input type="text" name="author" required/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Kommentti:</td>
-                    <td>
-                        <input type="textarea" name="comment"/>
-                    </td>
-                </tr>
+        <div class="container-fluid">
+            <div class="col-12">
+                <div class="row" style="margin-top:60px">
+                <div class="col-4"></div>
+                    <div class="col-4">
+
+        
+                    <h1>Lisää kirja lukuvinkiksi</h1>
+                    <div th:if="${param.error}"  class="alert alert-warning notification" role="alert">
+                        <p>Lukuvinkki on jo tallennettu!</p>
+                    </div>
+        
+                    <form method="POST" th:action="@{/book/create}">
+                    <div class="form-group">
+                        <label for="nameInputField">Nimi</label>
+                        <input type="text" name="title" id="nameInputField" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="authorInputField">Tekijä</label>
+                        <input type="text" name="author" id="authorInputField" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="commentInputField">Kommentti</label>
+                        <input type="text" name="comment" id="commentInputField" class="form-control">
+                    </div>
+                    <button name="bookSubmit" type="submit" class="btn btn-primary">Lisää uusi kirja</button>
+                </form>
+
                 </div>
-                <tr>
-                    <td>
-                        <input name="bookSubmit" type="submit" value="Lisää uusi kirja"/>
-                    </td>
-                </tr>
-            </table>
-        </form>
+        
+            <div class="col-4"></div>
+        </div>
+        </div>
+        </div>
         <footer th:replace="layout :: footer"></footer>
     </body>
 </html>
