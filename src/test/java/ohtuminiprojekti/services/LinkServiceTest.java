@@ -1,4 +1,76 @@
 package ohtuminiprojekti.services;
 
+import ohtuminiprojekti.dao.LinkRepository;
+import ohtuminiprojekti.domain.Link;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+@ActiveProfiles("test")
+@RunWith(SpringJUnit4ClassRunner.class)
 public class LinkServiceTest {
+  
+  @InjectMocks
+  LinkService linkService;
+  
+  @Mock
+  LinkRepository linkRepository;
+  
+  String correctTestingUrl;
+  String correctUrlTitle;
+  String incorrectTestingUrl;
+  String incorrectUrlTitle;
+  String validName;
+  String validComment;
+  Link testLink;
+  
+  @Before
+  public void setUp() {
+    correctTestingUrl = "https://www.helsinki.fi";
+    incorrectTestingUrl = "https://w.helsinki.f";
+    correctUrlTitle = "Tutkimusta, opetusta ja yhteistyötä | Helsingin yliopisto";
+    incorrectUrlTitle = "";
+    validName = "Testilinkki";
+    validComment = "Testikommentti";
+  }
+  
+  @Test
+  public void isUrlReturnsTrueWithRealUrl() {
+    Assert.assertTrue(linkService.isURL(correctTestingUrl));
+  }
+  
+  @Test
+  public void isUrlReturnsFalseWithIncorrectUrl() {
+    Assert.assertTrue(!linkService.isURL(incorrectTestingUrl));
+  }
+  
+  @Test
+  public void correctTitleForUrlIsReturned() {
+    Assert.assertEquals(correctUrlTitle, linkService.getTitleOfUrl(correctTestingUrl));
+  }
+  
+  @Test
+  public void emptyTitleForIncorrectUrlIsReturned() {
+    Assert.assertEquals(incorrectUrlTitle, linkService.getTitleOfUrl(incorrectTestingUrl));
+  }
+  
+  @Test
+  public void validLinkIsSaved() {
+    linkService.newLink(validName, correctTestingUrl, validComment);
+    Mockito.verify(linkRepository, Mockito.times(1)).save(Mockito.any(Link.class));
+  }
+
+  @Test
+  public void existingLinkByUrlPeformsCorrectDatabaseQuery() {
+    linkService.existingLinkByUrl(correctTestingUrl);
+    Mockito.verify(linkRepository, Mockito.times(1)).findByLink(correctTestingUrl);
+  }
+  
 }

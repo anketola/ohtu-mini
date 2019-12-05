@@ -36,6 +36,7 @@ public class PictureService {
     }
   }
 
+  @Transactional
   public byte[] getPicture(Long id) {
     return pictureRepository.getOne(id).getContent();
   }
