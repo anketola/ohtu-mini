@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout :: head">
+        <title></title>
+    </head>
+    <body>
+        <header th:replace="layout :: header"></header>
+        
+        <div class="container-fluid">
+                <div class="col-12">
+                    <div class="row" style="margin-top:100px">
+                    <div class="col-4"></div>
+                        <div class="col-4">
+        
+            
+                        <h1>Hae kirjan tiedot ISBN:lla</h1>
+                        <div th:if="${param.error}"  class="alert alert-warning notification" role="alert">
+                            <p>Syötä oikea ISBN!</p>
+                        </div>
+            
+                        <form method="POST" th:action="@{/book/query}">
+                            <div class="form-group">
+                                <label for="nameInputField">ISBN</label>
+                                <input type="text" name="isbn" id="linkInputField" class="form-control" required>
+                            </div>
+                            <button name="linkSubmit" type="submit" class="btn btn-primary">Siirry tietojen muokkaukseen</button>
+                        </form>
+                        <form id="2" th:action="@{/book/create/none}" method="get">
+                             <button class="btn btn-primary">Lisää kirja ilman ISBN:aa</button>
+                        </form>
+                    </div>
+            
+                <div class="col-4"></div>
+            </div>
+            </div>
+        </div>
+
+        <footer th:replace="layout :: footer"></footer>
+    </body>
+</html>
+

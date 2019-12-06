@@ -20,11 +20,11 @@
                     <form method="POST" th:action="@{/book/create}">
                     <div class="form-group">
                         <label for="nameInputField">Nimi</label>
-                        <input type="text" name="title" id="nameInputField" class="form-control" required>
+                        <input type="text" name="title" id="nameInputField" class="form-control" th:value="${title}" required>
                     </div>
                     <div class="form-group">
                         <label for="authorInputField">Tekijä</label>
-                        <input type="text" name="author" id="authorInputField" class="form-control" required>
+                        <input type="text" name="author" id="authorInputField" class="form-control" th:value="${author}" required>
                     </div>
                     <div class="form-group">
                         <label for="commentInputField">Kommentti</label>

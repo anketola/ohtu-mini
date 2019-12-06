@@ -18,9 +18,19 @@ public class Isbn {
   private String thumbnailLink;
   private boolean valid;
 
+  public Isbn() {
+    this.isbn = "";
+    this.authors = "";
+    this.title = "";
+    this.thumbnailLink = "";
+    this.valid = true;
+  }
+  
+  
+  
   public Isbn(String isbn) {
-    this.isbn = isbn;
-    if(validateISBN(isbn)) {
+    this.isbn = isbn.replaceAll("-", "").replaceAll(" ", "").trim();
+    if(validateISBN(this.isbn)) {
       valid = true;
       getISBNInformation();
     } else {
