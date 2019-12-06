@@ -63,7 +63,7 @@ public class BookController {
   }
   
   @PostMapping("/book/query")
-  public String askLink(@RequestParam String isbn) {
+  public String askBook(@RequestParam String isbn) {
       Isbn isbnEntity = new Isbn(isbn);
       if(!isbnEntity.isValid()) {
           return "redirect:/book/query?error";

@@ -1,9 +1,10 @@
 package ohtuminiprojekti.services;
 
 import ohtuminiprojekti.dao.VideoRepository;
-import ohtuminiprojekti.domain.Link;
 import ohtuminiprojekti.domain.Video;
 import org.junit.Assert;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -70,6 +71,20 @@ public class VideoServiceTest {
   public void existingVideoByUrlPeformsCorrectDatabaseQuery() {
     videoService.existingVideoByUrl(correctTestingUrl);
     Mockito.verify(videoRepository, Mockito.times(1)).findByLink(correctTestingUrl);
+  }
+  
+  @Test
+  public void existingVideoByUrlReturnTrueWhenVideoExists() {
+    Mockito.when(videoRepository.findByLink(correctTestingUrl)).thenReturn(new Video());
+    boolean exists = videoService.existingVideoByUrl(correctTestingUrl);
+    assertTrue(exists);
+  }
+  
+  @Test
+  public void existingVideoByUrlReturnFalseWhenVideoDoesNotExist() {
+    Mockito.when(videoRepository.findByLink(correctTestingUrl)).thenReturn(null);
+    boolean exists = videoService.existingVideoByUrl(correctTestingUrl);
+    assertFalse(exists);
   }
   
 }

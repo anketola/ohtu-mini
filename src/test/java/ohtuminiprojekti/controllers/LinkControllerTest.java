@@ -1,4 +1,4 @@
-package ohtuminiprojekti;
+package ohtuminiprojekti.controllers;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -102,6 +102,18 @@ public class LinkControllerTest {
             .param("link", correctTestingUrl)
     ).andExpect(status().is3xxRedirection())
             .andExpect(redirectedUrl("/link/create?url=" + encodedParams))
+            .andReturn();
+  }
+  
+  @Test
+  public void postMethodAskLinkNonValidUrlRedirectsBack() throws Exception {
+    String url = "Non valid";
+    mockMvc.perform(
+        MockMvcRequestBuilders.post("/link/query")
+            .param("url", "/bookmarks/list")
+            .param("link", url)
+    ).andExpect(status().is3xxRedirection())
+            .andExpect(redirectedUrl("/link/query?error"))
             .andReturn();
   }
   

@@ -38,4 +38,14 @@ public class IsbnTest {
     Assert.assertEquals(false, new Isbn("asd").isValid());
     Assert.assertEquals(false, new Isbn("1-2-3-4-5-6-7-8-9-10").isValid());
   }
+  
+  @Test
+  public void noParameterIsbnsTest() {
+    Isbn isbn = new Isbn();
+    Assert.assertEquals("", isbn.getAuthors());
+    Assert.assertEquals("", isbn.getIsbn());
+    Assert.assertEquals("", isbn.getTitle());
+    Assert.assertEquals("", isbn.getThumbnailLink());
+    Assert.assertTrue(isbn.isValid());
+  }
 }

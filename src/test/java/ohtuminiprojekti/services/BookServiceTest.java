@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import ohtuminiprojekti.dao.BookRepository;
 import ohtuminiprojekti.domain.Book;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -66,6 +68,20 @@ public class BookServiceTest {
   public void existingBookWithSameTitleSearchesDatabase() {
     service.existingBook("b2title", "b2author");
     Mockito.verify(repo, Mockito.times(1)).findByTitleAndAuthor("b2title", "b2author");
+  }
+  
+  @Test
+  public void existingBookReturnTrueWhenBookExists() {
+    Mockito.when(repo.findByTitleAndAuthor("title", "author")).thenReturn(new Book());
+    boolean exists = service.existingBook("title", "author");
+    assertTrue(exists);
+  }
+  
+  @Test
+  public void existingBookReturnFalseWhenBookDoesNotExist() {
+    Mockito.when(repo.findByTitleAndAuthor("title", "author")).thenReturn(null);
+    boolean exists = service.existingBook("title", "author");
+    assertFalse(exists);
   }
 
 }
