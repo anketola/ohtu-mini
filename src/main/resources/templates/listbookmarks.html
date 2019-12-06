@@ -11,8 +11,8 @@
     <tr>
         <th style="width: 20%">Nimi</th>
         <th style="width: 20%">Kirjoittaja/Linkki</th>
-        <th style="width: 10%" class="dt-center">Tyyppi</th>
-        <th style="width: 10%">Luettu</th> 
+        <th style="width: 7%" class="dt-center">Tyyppi</th>
+        <th style="width: 7%" class="dt-center">Luettu</th> 
         <th></th>
     </tr>
     </thead>
@@ -32,8 +32,8 @@
             <td th:data-sort="${bookmark.type}" class="dt-center" style="position:relative;">
                 <img th:src="${'/' + bookmark.type + '_small.png'}" th:title="${bookmark.type}" th:alt="${bookmark.type}">
             </td>
-            <td style="position:relative;">
-                <span style="width: 90%; overflow: auto; position: absolute; top: -18px; white-space: nowrap;" th:text=${bookmark.hasBeenRead}></span>
+            <td th:data-sort="${bookmark.hasBeenRead}" class="dt-center" style="position:relative;">
+                <img th:src="${'/read_' + bookmark.hasBeenRead + '.png'}" th:title="${bookmark.hasBeenRead}" th:alt="${bookmark.hasBeenRead}">
             </td>            
             <td style="position:relative;">
                             <span>
