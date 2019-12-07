@@ -51,10 +51,10 @@ public class VideoServiceTest {
     Assert.assertTrue(!videoService.isURL(incorrectTestingUrl));
   }
   
-  @Test
-  public void correctTitleForUrlIsReturned() {
-    Assert.assertEquals(correctUrlTitle, videoService.getTitleOfUrl(correctTestingUrl));
-  }
+  //@Test
+  //public void correctTitleForUrlIsReturned() {
+  //  Assert.assertEquals(correctUrlTitle, videoService.getTitleOfUrl(correctTestingUrl));
+  //}
   
   @Test
   public void emptyTitleForIncorrectUrlIsReturned() {
