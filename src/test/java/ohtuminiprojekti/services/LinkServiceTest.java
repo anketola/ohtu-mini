@@ -2,8 +2,11 @@ package ohtuminiprojekti.services;
 
 import ohtuminiprojekti.dao.LinkRepository;
 import ohtuminiprojekti.domain.Link;
+import ohtuminiprojekti.domain.Video;
 
 import org.junit.Assert;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -71,6 +74,20 @@ public class LinkServiceTest {
   public void existingLinkByUrlPeformsCorrectDatabaseQuery() {
     linkService.existingLinkByUrl(correctTestingUrl);
     Mockito.verify(linkRepository, Mockito.times(1)).findByLink(correctTestingUrl);
+  }
+  
+  @Test
+  public void existingLinkByUrlReturnTrueWhenLinkExists() {
+    Mockito.when(linkRepository.findByLink(correctTestingUrl)).thenReturn(new Link());
+    boolean exists = linkService.existingLinkByUrl(correctTestingUrl);
+    assertTrue(exists);
+  }
+  
+  @Test
+  public void existingLinkByUrlReturnFalseWhenLinkDoesNotExist() {
+    Mockito.when(linkRepository.findByLink(correctTestingUrl)).thenReturn(null);
+    boolean exists = linkService.existingLinkByUrl(correctTestingUrl);
+    assertFalse(exists);
   }
   
 }

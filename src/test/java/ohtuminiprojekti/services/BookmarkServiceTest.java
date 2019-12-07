@@ -10,6 +10,9 @@ import java.util.List;
 import ohtuminiprojekti.dao.BookmarkRepository;
 import ohtuminiprojekti.domain.Bookmark;
 import org.junit.Assert;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -68,5 +71,29 @@ public class BookmarkServiceTest {
     Mockito.when(b1.getId()).thenReturn(1L);
     service.deleteBookmark(b1.getId());
     verify(repo, times(1)).deleteById(1L);
+  }
+  
+  @Test
+  public void bookmarkGetByIdGetsById() {
+    Mockito.when(repo.getOne(1L)).thenReturn(b1);
+    Bookmark testBookmark = service.getById(1L);
+    verify(repo, times(1)).getOne(1L);
+    assertEquals(b1, testBookmark);
+  }
+  
+  @Test
+  public void bookmarkByNameExistsReturnTrueWhenBookExists() {
+    Mockito.when(repo.findByName("b1name")).thenReturn(b1);
+    boolean exists = service.bookmarkByNameExists("b1name");
+    verify(repo, times(1)).findByName("b1name");
+    assertTrue(exists);
+  }
+  
+  @Test
+  public void bookmarkByNameExistsReturnFalseWhenBookDoesNotExist() {
+    Mockito.when(repo.findByName("b1name")).thenReturn(null);
+    boolean exists = service.bookmarkByNameExists("b1name");
+    verify(repo, times(1)).findByName("b1name");
+    assertFalse(exists);
   }
 }
