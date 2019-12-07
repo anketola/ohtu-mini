@@ -64,6 +64,27 @@ public class Stepdefs {
     element.click();
   }
 
+  @Given("command to automatically get data by URL is selected")
+  public void command_to_automatically_get_data_by_URL_is_selected() {
+    driver.get(baseUrl);
+    clickLinkWithText("uusi nettivinkki");
+  }
+
+  @When("url information {string} is entered")
+  public void url_information_is_entered(String urlString) throws InterruptedException {
+    WebElement element = driver.findElement(By.name("link"));
+    element.sendKeys(urlString);
+    element = driver.findElement(By.name("linkSubmit"));
+    element.submit();
+    Thread.sleep(500);
+  }
+
+  @When("fetched url information is accepted")
+  public void fetched_url_information_is_accepted() {
+    WebElement element = driver.findElement(By.name("linkSubmit"));
+    element.click();
+  }
+
   @When("url information title {string} and url {string} are entered")
   public void url_information_title_and_url_are_entered(String title, String urlstring) {
     enterUrlInformation(title, urlstring);
@@ -233,6 +254,11 @@ public class Stepdefs {
     pageDoesNotHaveContent(message);
   }
 
+  @Then("a link to address {string} is shown in the listing")
+  public void a_link_to_address_is_shown_in_the_listing(String address) {
+    pageHasLinkToAddress(address);  
+  }
+
   
   private void clickLinkWithText(String text) {
     int trials = 0;
@@ -269,6 +295,10 @@ public class Stepdefs {
     Assert.assertTrue(driver.getPageSource().contains(content));
   }
 
+  private void pageHasLinkToAddress(String address) {
+    Assert.assertTrue(driver.getPageSource().contains("href=\"" + address + "\""));
+  }
+  
   private void pageDoesNotHaveContent(String content) {
     Assert.assertTrue(!driver.getPageSource().contains(content));
   }
