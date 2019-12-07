@@ -13,19 +13,37 @@
                         <div class="col-4">
         
             
-                        <h1>Hae nettivinkin tiedot</h1>
-                        <div th:if="${param.error}"  class="alert alert-warning notification" role="alert">
-                            <p>Syötä oikea osoite!</p>
+                        <h1 style="text-align: center">Hae nettilinkin tiedot</h1>
+                        <div style="text-align: center">
+                                <img src="/link_large.png" alt="book">
                         </div>
-            
+                        
+                        <p class="text-muted" style="text-align: center; padding-top: 10px">
+                            Nettilinkin tiedot haetaan automaattisesti puolestasi.
+                        </p>
+                        <div th:if="${param.error}"  class="alert alert-warning notification" role="alert">
+                            <p>Syötä oikea osoite</p>
+                        </div>
+                        
                         <form method="POST" th:action="@{/link/query}">
                         <div class="form-group">
                             <label for="nameInputField">URL</label>
                             <input type="text" name="link" id="linkInputField" class="form-control" required>
                         </div>
-                        <button name="linkSubmit" type="submit" class="btn btn-primary">Siirry tietojen muokkaukseen</button>
+                        <button name="linkSubmit" type="submit" class="btn btn-primary">Hae tiedot</button>
                     </form>
-        
+                    <br />
+                    <br />
+                    <p class="text-muted">
+                        Jos et halua hakea tietoja automaattisesti, voit siirtyä myös lisäämään tiedot kokonaan itse.
+                    </p>
+                    <form id="2" th:action="@{/link/create}" method="get">
+                        <input type="hidden" name="link" value="" />
+                        <input type="hidden" name="url" value="" />
+                        <button type="submit" name="addLinkDirectly" class="btn btn-primary">Lisää nettilinkki ilman hakua</button>
+                   </form>
+
+
                     </div>
             
                 <div class="col-4"></div>

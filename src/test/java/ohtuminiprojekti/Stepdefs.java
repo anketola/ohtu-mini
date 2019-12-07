@@ -1,6 +1,5 @@
 package ohtuminiprojekti;
 
-import com.gargoylesoftware.htmlunit.ConfirmHandler;
 import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -12,7 +11,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitAlert;
 
 public class Stepdefs {
 
@@ -61,7 +59,9 @@ public class Stepdefs {
   @Given("command save internet resource is selected")
   public void command_save_internet_resource_is_selected() {
     driver.get(baseUrl);
-    clickLinkWithText("Lisää lukuvinkki(linkki)");
+    clickLinkWithText("uusi nettivinkki");
+    WebElement element = driver.findElement(By.name("addLinkDirectly"));
+    element.click();
   }
 
   @When("url information title {string} and url {string} are entered")
@@ -175,7 +175,9 @@ public class Stepdefs {
   @Given("^book with title \"([^\"]*)\" and author \"([^\"]*)\" is saved$")
   public void books_saved(String title, String author) throws Throwable {
     driver.get(baseUrl);
-    clickLinkWithText("Lisää lukuvinkki(kirja)");
+    clickLinkWithText("uusi kirjavinkki");
+    WebElement element = driver.findElement(By.name("addWithoutISBN"));
+    element.click();
     enterBookInformation(title, author);
   }
 
@@ -188,7 +190,9 @@ public class Stepdefs {
   @Given("^command save book is selected$")
   public void command_save_book_is_selected() throws Throwable {
     driver.get(baseUrl);
-    clickLinkWithText("Lisää lukuvinkki(kirja)");
+    clickLinkWithText("uusi kirjavinkki");
+    WebElement element = driver.findElement(By.name("addWithoutISBN"));
+    element.click();
   }
 
   @When("^command list books is selected$")
@@ -243,7 +247,7 @@ public class Stepdefs {
     }
   }
 
-   private void enterUrlInformation(String name, String urlstring) {
+  private void enterUrlInformation(String name, String urlstring) {
     WebElement element = driver.findElement(By.name("name"));
     element.sendKeys(name);
     element = driver.findElement(By.name("link"));

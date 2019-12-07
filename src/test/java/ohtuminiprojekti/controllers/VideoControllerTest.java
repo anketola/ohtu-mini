@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
@@ -74,4 +75,13 @@ public class VideoControllerTest {
     Assert.assertTrue(content.contains(newName));
     Assert.assertTrue(content.contains("video"));
   }
+  
+  @Test
+  public void getMethodvideoQueryReturnsCorrectView() throws Exception {
+    mockMvc.perform(get("/video/query"))
+        .andExpect(status().isOk())
+        .andExpect(view().name("videoquery"))
+        .andReturn();
+  }
+
 }

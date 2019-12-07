@@ -77,4 +77,13 @@ public class BookControllerTest {
     Assert.assertTrue(content.contains(newTitle));
     Assert.assertTrue(content.contains("book"));
   }
+  
+  @Test
+  public void getMethodNewBookNoIsbnCorrectRedirect() throws Exception {
+    mockMvc.perform(get("/book/create/"))
+        .andExpect(status().is3xxRedirection())
+            .andExpect(redirectedUrl("/book/create/none")).andReturn();
+
+  }
+  
 }

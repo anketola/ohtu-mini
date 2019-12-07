@@ -16,17 +16,18 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/book/query">Lisää lukuvinkki(kirja)</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Lisää lukuvinkki
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a id="bookMenuAdd" class="dropdown-item" href="/book/query">Uusi kirjavinkki</a>
+                                <a id="linkMenuAdd" class="dropdown-item" href="/link/query">Uusi nettivinkki</a>
+                                <a id="videoMenuAdd" class="dropdown-item" href="/video/query">Uusi videovinkki</a>
+                            </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/link/query">Lisää lukuvinkki(linkki)</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/video/query">Lisää lukuvinkki(video)</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/bookmarks/list">Listaa lukuvinkit</a>
+                                <a class="nav-link" href="/bookmarks/list">Listaa lukuvinkit</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/bookmarks/list/read">Listaa luetut lukuvinkit</a>

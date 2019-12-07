@@ -14,19 +14,36 @@
                         <div class="col-4">
         
             
-                        <h1>Hae videon tiedot</h1>
+                        <h1 style="text-align: center">Hae videon tiedot</h1>
+                        <div style="text-align: center">
+                            <img src="/video_large.png" alt="book">
+                        </div>
                         <div th:if="${param.error}"  class="alert alert-warning notification" role="alert">
                             <p>Syötä oikea osoite.</p>
                         </div>
-            
+                        <p class="text-muted" style="text-align: center; padding-top: 10px">
+                            Videon tiedot haetaan automaattisesti puolestasi.
+                        </p>
+
                         <form method="POST" th:action="@{/video/query}">
                         <div class="form-group">
                             <label for="nameInputField">URL</label>
                             <input type="text" name="link" id="linkInputField" class="form-control" required>
                         </div>
-                        <button name="linkSubmit" type="submit" class="btn btn-primary">Siirry tietojen muokkaukseen</button>
+                        <button name="videoSubmit" type="submit" class="btn btn-primary">Hae tiedot</button>
                     </form>
-        
+                    <br />
+                    <br />
+                    <p class="text-muted">
+                        Jos et halua hakea tietoja automaattisesti, voit siirtyä myös lisäämään tiedot kokonaan itse.
+                    </p>
+                    <form id="2" th:action="@{/video/create}" method="get">
+                        <input type="hidden" name="link" value="" />
+                        <input type="hidden" name="url" value="" />
+                        <button type="submit" name="addVideoDirectly" class="btn btn-primary">Lisää video ilman hakua</button>
+                   </form>
+
+
                     </div>
             
                 <div class="col-4"></div>
