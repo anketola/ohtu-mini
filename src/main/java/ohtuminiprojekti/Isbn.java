@@ -40,35 +40,33 @@ public class Isbn {
 
   // Returns true if the given string is a valid ISBN
   private boolean validateISBN(String isbn) {
-    int checksum = 0;
-    if(isbn.length() == 10) {
-      for(int i = 0; i < 9; i++) {
-        char cha = isbn.charAt(i);
-        if('0' > cha || cha > '9') {
-          return false;
-        }
-        checksum += (10 - i) * (cha - '0');
-      }
-      checksum = (11-checksum%11)%11;
-      return checksum == isbn.charAt(9) - '0';
-    } else if(isbn.length() == 13) {
-      for(int i = 0; i < 12; i++) {
-        char cha = isbn.charAt(i);
-        if('0' > cha || cha > '9') {
-          return false;
-        }
-        int digit = cha - '0';
-        if(i % 2 == 0) {
-          checksum += digit;
-        } else {
-          checksum += digit * 3;
-        }
-      }
-      checksum = (10 - checksum % 10) % 10;
-      return isbn.charAt(12) - '0' == checksum;
-    }
-    return false;
+	int length = isbn.length();
+	if (length != 10 && length != 13) return false;
+	return formulatedChecksumValid(length);	
   }
+
+	private boolean formulatedChecksumValid(int length) {
+	  int checksum = 0;
+	  for(int i = 0; i < length - 1; i++) {
+		char cha = isbn.charAt(i);
+		int digit = cha - '0';
+		if('0' > cha || cha > '9') {
+		  return false;
+		} 
+		if (length == 10) {
+			checksum += (10 - i) * digit;
+		} else if (length == 13) {
+			if(i % 2 == 0) {
+			  checksum += digit;
+			} else {
+			  checksum += digit * 3;
+			}	
+		}
+	  }
+	  int checksumFigure = length == 10 ? 11 : 10;
+      checksum = (checksumFigure - checksum % checksumFigure) % checksumFigure;	
+      return isbn.charAt(length - 1) - '0' == checksum;
+	}
 
   private void getISBNInformation() {
     String apiLink = "https://www.googleapis.com/books/v1/volumes?q=isbn:" + getIsbn();
