@@ -244,7 +244,7 @@ public class Stepdefs {
     pageHasContent(title);
   }
 
-  @Then("a page with with text {string} is displayed")
+  @Then("a page with text {string} is displayed")
   public void page_with_with_text_is_displayed(String string) {
     pageHasContent(string);
   }
@@ -259,7 +259,11 @@ public class Stepdefs {
     pageHasLinkToAddress(address);  
   }
 
-  
+  @When("a link with text {string} is clicked")
+  public void a_link_with_text_is_clicked(String linkToClick) {
+    clickLinkWithText(linkToClick);
+  }
+
   private void clickLinkWithText(String text) {
     int trials = 0;
     while (trials++ < 5) {
