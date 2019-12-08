@@ -1,5 +1,6 @@
 package ohtuminiprojekti.services;
 
+import ohtuminiprojekti.Utils;
 import ohtuminiprojekti.dao.LinkRepository;
 import ohtuminiprojekti.domain.Link;
 import ohtuminiprojekti.domain.Video;
@@ -56,12 +57,12 @@ public class LinkServiceTest {
   
   @Test
   public void correctTitleForUrlIsReturned() {
-    Assert.assertEquals(correctUrlTitle, linkService.getTitleOfUrl(correctTestingUrl));
+    Assert.assertEquals(correctUrlTitle, Utils.getTitleOfUrl(correctTestingUrl));
   }
   
   @Test
   public void emptyTitleForIncorrectUrlIsReturned() {
-    Assert.assertEquals(incorrectUrlTitle, linkService.getTitleOfUrl(incorrectTestingUrl));
+    Assert.assertEquals(incorrectUrlTitle, Utils.getTitleOfUrl(incorrectTestingUrl));
   }
   
   @Test

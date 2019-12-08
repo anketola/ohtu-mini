@@ -49,17 +49,4 @@ public class VideoService {
     videoRepository.save(video);
   }
 
-  public String getTitleOfUrl(String url) {
-    String title = "";
-    InputStream response = null; 
-    try {
-      response = new URL(url).openStream();
-      Scanner scanner = new Scanner(response);
-      String responseBody = scanner.useDelimiter("\\A").next();
-      title = responseBody.substring(responseBody.indexOf("<title>") + 7, responseBody.indexOf("</title>"));
-      response.close();
-    } catch (IOException ex) {
-    } 
-    return title;
-  } 
 }

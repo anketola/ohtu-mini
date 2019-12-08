@@ -50,7 +50,7 @@ public class LinkController {
 
   @GetMapping("/link/create")
   public String newLink(Model model, @RequestParam String url) {
-    model.addAttribute("name", linkService.getTitleOfUrl(url));
+    model.addAttribute("name", Utils.getTitleOfUrl(url));
     model.addAttribute("link", url);
     return "newlink";
   }

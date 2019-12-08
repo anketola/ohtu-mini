@@ -50,7 +50,7 @@ public class VideoController {
 
   @GetMapping("/video/create")
   public String newVideo(Model model, @RequestParam String url) {
-    model.addAttribute("name", videoService.getTitleOfUrl(url));
+    model.addAttribute("name", Utils.getTitleOfUrl(url));
     model.addAttribute("link", url);
     return "newvideo";
   }

@@ -1,5 +1,6 @@
 package ohtuminiprojekti.services;
 
+import ohtuminiprojekti.Utils;
 import ohtuminiprojekti.dao.VideoRepository;
 import ohtuminiprojekti.domain.Video;
 import org.junit.Assert;
@@ -58,7 +59,7 @@ public class VideoServiceTest {
   
   @Test
   public void emptyTitleForIncorrectUrlIsReturned() {
-    Assert.assertEquals(incorrectUrlTitle, videoService.getTitleOfUrl(incorrectTestingUrl));
+    Assert.assertEquals(incorrectUrlTitle, Utils.getTitleOfUrl(incorrectTestingUrl));
   }
   
   @Test
