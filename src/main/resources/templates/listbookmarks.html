@@ -11,6 +11,7 @@
     <tr>
         <th style="width: 35%">Nimi</th>
         <th style="width: 20%">Kirjoittaja/Linkki</th>
+        <th style="width: 100px">Thumbnail</th>
         <th style="width: 7%" class="dt-center">Tyyppi</th>
         <th style="width: 7%" class="dt-center">Luettu</th> 
         <th></th>
@@ -29,6 +30,9 @@
                     <a th:href="${bookmark.link}" target="_blank"><span style="width: 90%; overflow: auto; position: absolute; top: -18px; white-space: nowrap" th:text="${#strings.abbreviate(bookmark.link,30)} "></span></a>
                 </span>
             </td>
+        <td style="position:relative;">
+            <img style="max-height: 100px; max-width:100%;" th:src="@{${bookmark.thumbnailUrl}}" alt="">
+        </td>
             <td th:data-sort="${bookmark.type}" class="dt-center" style="position:relative;">
                 <img th:src="${'/' + bookmark.type + '_small.png'}" th:title="${bookmark.type}" th:alt="${bookmark.type}">
             </td>

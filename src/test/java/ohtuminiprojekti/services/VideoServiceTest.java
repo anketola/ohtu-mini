@@ -30,6 +30,7 @@ public class VideoServiceTest {
   String incorrectUrlTitle;
   String validName;
   String validComment;
+  String validThumbnailUrl;
   Video testVideo;
   
   @Before
@@ -40,6 +41,7 @@ public class VideoServiceTest {
     incorrectUrlTitle = "";
     validName = "Testilinkki";
     validComment = "Testikommentti";
+    this.validThumbnailUrl = "www.lol.png.com";
   }
   
   @Test
@@ -64,7 +66,7 @@ public class VideoServiceTest {
   
   @Test
   public void validVideoIsSaved() {
-    videoService.newVideo(validName, correctTestingUrl, validComment);
+    videoService.newVideo(validName, correctTestingUrl, validComment, validThumbnailUrl);
     Mockito.verify(videoRepository, Mockito.times(1)).save(Mockito.any(Video.class));
   }
 

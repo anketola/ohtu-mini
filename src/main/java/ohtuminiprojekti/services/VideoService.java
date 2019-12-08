@@ -15,12 +15,13 @@ public class VideoService {
   @Autowired
   private VideoRepository videoRepository;
 
-  public Video newVideo(String name, String url, String comment) {
+  public Video newVideo(String name, String url, String comment, String thumbnailUrl) {
     Video video = new Video();
     video.setName(name);
     video.setLink(url);
     video.setComment(comment);
     video.setHasBeenRead(false);
+    video.setThumbnailUrl(thumbnailUrl);
     videoRepository.save(video);
     return video;
   }
@@ -41,11 +42,12 @@ public class VideoService {
     return videoRepository.findByLink(url) != null;
   }
 
-  public void edit(long id, String name, String url, String comment) {
+  public void edit(long id, String name, String url, String comment, String thumbnailUrl) {
     Video video = videoRepository.getOne(id);
     video.setLink(url);
     video.setName(name);
     video.setComment(comment);
+    video.setThumbnailUrl(thumbnailUrl);
     videoRepository.save(video);
   }
 

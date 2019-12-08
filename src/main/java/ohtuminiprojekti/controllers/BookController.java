@@ -23,9 +23,9 @@ public class BookController {
   private BookmarkService bookmarkService;
 
   @PostMapping("/book/create")
-  public String createBook(@RequestParam String title, @RequestParam String author, @RequestParam String comment) {
+  public String createBook(@RequestParam String title, @RequestParam String author, @RequestParam String comment, @RequestParam String thumbnailUrl) {
     if (!bookService.existingBook(title, author)) {
-      bookService.newBook(title, author, comment);
+      bookService.newBook(title, author, comment, thumbnailUrl);
       return "redirect:/bookmarks/list";
     } else {
       return "redirect:/book/create/none?error";
@@ -53,6 +53,7 @@ public class BookController {
       isbnEntity = new Isbn(isbn);
     }
     model.addAttribute("title", isbnEntity.getTitle());
+    model.addAttribute("thumbnailUrl", isbnEntity.getThumbnailLink());
     model.addAttribute("author", isbnEntity.getAuthors());
     return "newbook";
   }
@@ -72,10 +73,10 @@ public class BookController {
   }
 
   @PostMapping("/book/edit")
-  public String edit(RedirectAttributes redirectAttributes, @RequestParam long id, @RequestParam String url, @RequestParam String title, @RequestParam String author, @RequestParam String comment) {
+  public String edit(RedirectAttributes redirectAttributes, @RequestParam long id, @RequestParam String url, @RequestParam String title, @RequestParam String author, @RequestParam String comment, @RequestParam String thumbnailUrl) {
     Book book = bookService.getById(id);
     if ((book.getAuthor().equals(author) && book.getTitle().equals(title)) || !bookService.existingBook(title, author)) {
-      bookService.edit(id, title, author, comment);
+      bookService.edit(id, title, author, comment, thumbnailUrl);
       bookmarkService.setName(id, title);
       return Utils.redirectToSameListing(url);
     }

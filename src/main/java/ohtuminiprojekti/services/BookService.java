@@ -11,13 +11,14 @@ public class BookService {
   @Autowired
   private BookRepository bookRepository;
 
-  public Book newBook(String titleString, String authorString, String comment) {
+  public Book newBook(String titleString, String authorString, String comment, String thumbnailUrl) {
     Book book = new Book();
     book.setName(titleString);
     book.setTitle(titleString);
     book.setAuthor(authorString);
     book.setComment(comment);
     book.setHasBeenRead(false);
+    book.setThumbnailUrl(thumbnailUrl);
     bookRepository.save(book);
     return book;
   }
@@ -31,12 +32,13 @@ public class BookService {
     return book != null;
   }
 
-  public void edit(long id, String title, String author, String comment) {
+  public void edit(long id, String title, String author, String comment, String thumbnailUrl) {
     Book book = bookRepository.getOne(id);
     book.setName(title);
     book.setTitle(title);
     book.setAuthor(author);
     book.setComment(comment);
+    book.setThumbnailUrl(thumbnailUrl);
     bookRepository.save(book);
   }
 }

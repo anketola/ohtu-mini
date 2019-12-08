@@ -36,6 +36,10 @@
                     <label for="commentInputField">Kommentti</label>
                     <input type="text" name="comment" id="commentInputField" class="form-control">
                 </div>
+                <div class="form-group">
+                    <label for="thumbnailUrlInputField">Thumbnail url</label>
+                    <input type="text" name="thumbnailUrl" id="thumbnailUrlInputField" th:value="${thumbnailUrl}" class="form-control">
+                </div>
                 <button name="videoSubmit" type="submit" class="btn btn-primary">Lisää uusi lukuvinkki</button>
             </form>
 

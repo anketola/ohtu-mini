@@ -48,6 +48,7 @@ public class BookControllerTest {
         MockMvcRequestBuilders.post("/book/create")
             .param("title", title)
             .param("author", author)
+            .param("thumbnailUrl", "lol")
             .param("comment", "")
     ).andExpect(status().is3xxRedirection())
         .andExpect(redirectedUrl("/bookmarks/list")).andReturn();
@@ -74,6 +75,7 @@ public class BookControllerTest {
             .param("title", newTitle)
             .param("author", newAuthor)
             .param("comment", newComment)
+            .param("thumbnailUrl", "lol")
             .param("url", "/bookmarks/list")
     ).andExpect(status().is3xxRedirection())
         .andExpect(redirectedUrl("/bookmarks/list")).andReturn();

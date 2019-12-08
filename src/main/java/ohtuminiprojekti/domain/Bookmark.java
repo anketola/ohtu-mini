@@ -23,6 +23,7 @@ public class Bookmark extends AbstractPersistable<Long> {
   private String name;
   private String comment;
   private boolean hasBeenRead;
+  private String thumbnailUrl;
 
   @OneToOne(cascade = CascadeType.ALL, optional = true, orphanRemoval = true)
   private Picture picture;

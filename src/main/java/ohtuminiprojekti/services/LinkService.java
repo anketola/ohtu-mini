@@ -15,12 +15,13 @@ public class LinkService {
   @Autowired
   private LinkRepository linkRepository;
 
-  public Link newLink(String name, String url, String comment) {
+  public Link newLink(String name, String url, String comment, String thumbnailUrl) {
     Link link = new Link();
     link.setName(name);
     link.setLink(url);
     link.setComment(comment);
     link.setHasBeenRead(false);
+    link.setThumbnailUrl(thumbnailUrl);
     linkRepository.save(link);
     return link;
   }
@@ -41,11 +42,12 @@ public class LinkService {
     return linkRepository.findByLink(url) != null;
   }
 
-  public void edit(long id, String name, String url, String comment) {
+  public void edit(long id, String name, String url, String comment, String thumbnailUrl) {
     Link link = linkRepository.getOne(id);
     link.setLink(url);
     link.setName(name);
     link.setComment(comment);
+    link.setThumbnailUrl(thumbnailUrl);
     linkRepository.save(link);
   }
 }

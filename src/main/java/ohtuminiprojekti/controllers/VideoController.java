@@ -17,9 +17,9 @@ public class VideoController {
   private VideoService videoService;
 
   @PostMapping("/video/create")
-  public String createVideo(RedirectAttributes redirectAttributes, @RequestParam String name, @RequestParam String link, @RequestParam String comment) {
+  public String createVideo(RedirectAttributes redirectAttributes, @RequestParam String name, @RequestParam String link, @RequestParam String comment, @RequestParam String thumbnailUrl) {
     if (!videoService.existingVideoByUrl(link)) {
-      videoService.newVideo(name, link, comment);
+      videoService.newVideo(name, link, comment, thumbnailUrl);
       return "redirect:/bookmarks/list";
     } else {
       redirectAttributes.addAttribute("url", link);
@@ -51,14 +51,15 @@ public class VideoController {
   @GetMapping("/video/create")
   public String newVideo(Model model, @RequestParam String url) {
     model.addAttribute("name", Utils.getTitleOfUrl(url));
+    model.addAttribute("thumbnailUrl", Utils.getYoutubeVideoThumbnail(url));
     model.addAttribute("link", url);
     return "newvideo";
   }
 
   @PostMapping("/video/edit")
-  public String editVideo(RedirectAttributes redirectAttributes, @RequestParam long id, @RequestParam String url, @RequestParam String name, @RequestParam String link, @RequestParam String comment) {
+  public String editVideo(RedirectAttributes redirectAttributes, @RequestParam long id, @RequestParam String url, @RequestParam String name, @RequestParam String link, @RequestParam String comment, @RequestParam String thumbnailUrl) {
     if (videoService.getById(id).getLink().equals(link) || !videoService.existingVideoByUrl(link)) {
-      videoService.edit(id, name, link, comment);
+      videoService.edit(id, name, link, comment, thumbnailUrl);
       return Utils.redirectToSameListing(url);
     }
     redirectAttributes.addAttribute("id", id);

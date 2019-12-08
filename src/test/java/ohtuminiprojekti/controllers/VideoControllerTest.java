@@ -51,6 +51,7 @@ public class VideoControllerTest {
             .param("name", name)
             .param("link", link)
             .param("comment", "")
+            .param("thumbnailUrl", "lol")
     ).andExpect(status().is3xxRedirection())
         .andExpect(redirectedUrl("/bookmarks/list")).andReturn();
 
@@ -76,6 +77,7 @@ public class VideoControllerTest {
             .param("name", newName)
             .param("link", newLink)
             .param("comment", newComment)
+            .param("thumbnailUrl", "lol")
             .param("url", "/bookmarks/list")
     ).andExpect(status().is3xxRedirection())
         .andExpect(redirectedUrl("/bookmarks/list")).andReturn();

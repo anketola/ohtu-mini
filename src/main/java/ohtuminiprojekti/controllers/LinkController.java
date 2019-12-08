@@ -2,6 +2,7 @@ package ohtuminiprojekti.controllers;
 
 import ohtuminiprojekti.Utils;
 import ohtuminiprojekti.services.LinkService;
+import okhttp3.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +18,9 @@ public class LinkController {
   private LinkService linkService;
 
   @PostMapping("/link/create")
-  public String createLink(RedirectAttributes redirectAttributes, @RequestParam String name, @RequestParam String link, @RequestParam String comment) {
+  public String createLink(RedirectAttributes redirectAttributes, @RequestParam String name, @RequestParam String link, @RequestParam String comment, @RequestParam String thumbnailUrl) {
     if (!linkService.existingLinkByUrl(link)) {
-      linkService.newLink(name, link, comment);
+      linkService.newLink(name, link, comment, thumbnailUrl);
       return "redirect:/bookmarks/list";
     } else {
       redirectAttributes.addAttribute("url", link);
@@ -51,14 +52,15 @@ public class LinkController {
   @GetMapping("/link/create")
   public String newLink(Model model, @RequestParam String url) {
     model.addAttribute("name", Utils.getTitleOfUrl(url));
+    model.addAttribute("thumbnailUrl", Utils.getOgImageMetatag(url));
     model.addAttribute("link", url);
     return "newlink";
   }
 
   @PostMapping("/link/edit")
-  public String editLink(RedirectAttributes redirectAttributes, @RequestParam long id, @RequestParam String url, @RequestParam String name, @RequestParam String link, @RequestParam String comment) {
+  public String editLink(RedirectAttributes redirectAttributes, @RequestParam long id, @RequestParam String url, @RequestParam String name, @RequestParam String link, @RequestParam String comment, @RequestParam String thumbnailUrl) {
     if (linkService.getById(id).getLink().equals(link) || !linkService.existingLinkByUrl(link)) {
-      linkService.edit(id, name, link, comment);
+      linkService.edit(id, name, link, comment, thumbnailUrl);
       return Utils.redirectToSameListing(url);
     }
     redirectAttributes.addAttribute("id", id);

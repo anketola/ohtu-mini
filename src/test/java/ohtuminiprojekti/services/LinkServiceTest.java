@@ -33,6 +33,7 @@ public class LinkServiceTest {
   String incorrectUrlTitle;
   String validName;
   String validComment;
+  String validThumbnailUrl;
   Link testLink;
   
   @Before
@@ -67,7 +68,7 @@ public class LinkServiceTest {
   
   @Test
   public void validLinkIsSaved() {
-    linkService.newLink(validName, correctTestingUrl, validComment);
+    linkService.newLink(validName, correctTestingUrl, validComment, validThumbnailUrl);
     Mockito.verify(linkRepository, Mockito.times(1)).save(Mockito.any(Link.class));
   }
 

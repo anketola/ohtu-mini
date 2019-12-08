@@ -48,7 +48,7 @@ public class BookServiceTest {
   public void newBookIsSaved() {
     String title = "Test Book";
     String author = "Dest Tester";
-    service.newBook(title, author, null);
+    service.newBook(title, author, null, "lol");
     Mockito.verify(repo, Mockito.times(1)).save(Mockito.any(Book.class));
   }
 
