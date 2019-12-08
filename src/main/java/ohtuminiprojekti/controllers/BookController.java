@@ -47,10 +47,10 @@ public class BookController {
   @GetMapping("/book/create/{isbn}")
   public String newBook(Model model, @PathVariable String isbn) {
     Isbn isbnEntity;
-    if(isbn.equals("none")) {
-        isbnEntity = new Isbn();
+    if (isbn.equals("none")) {
+      isbnEntity = new Isbn();
     } else {
-        isbnEntity = new Isbn(isbn);
+      isbnEntity = new Isbn(isbn);
     }
     model.addAttribute("title", isbnEntity.getTitle());
     model.addAttribute("author", isbnEntity.getAuthors());
@@ -64,11 +64,11 @@ public class BookController {
   
   @PostMapping("/book/query")
   public String askBook(@RequestParam String isbn) {
-      Isbn isbnEntity = new Isbn(isbn);
-      if(!isbnEntity.isValid()) {
-          return "redirect:/book/query?error";
-      }
-      return "redirect:/book/create/" + isbn;
+    Isbn isbnEntity = new Isbn(isbn);
+    if (!isbnEntity.isValid()) {
+      return "redirect:/book/query?error";
+    }
+    return "redirect:/book/create/" + isbn;
   }
 
   @PostMapping("/book/edit")

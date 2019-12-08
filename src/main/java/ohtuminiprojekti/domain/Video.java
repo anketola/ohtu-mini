@@ -1,6 +1,5 @@
 package ohtuminiprojekti.domain;
 
-
 import javax.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;

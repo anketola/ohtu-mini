@@ -29,16 +29,16 @@ public class VideoController {
   
   @GetMapping("/video/query")
   public String askVideo() {
-      return "videoquery";
+    return "videoquery";
   }
   
   @PostMapping("/video/query")
   public String askVideo(RedirectAttributes redirectAttributes, @RequestParam String link) {
-      if(!videoService.isURL(link)) {
-          return "redirect:/video/query?error";
-      }
-      redirectAttributes.addAttribute("url", link);
-      return "redirect:/video/create";
+    if (!videoService.isURL(link)) {
+      return "redirect:/video/query?error";
+    }
+    redirectAttributes.addAttribute("url", link);
+    return "redirect:/video/create";
   }
 
   @GetMapping("/video/edit")

@@ -15,7 +15,7 @@ Feature: As a user, internet resource information is fetched on behalf of me or 
         Scenario: user can fetch url information automatically and save the data as a URL bookmark
             Given user is in a view to enter URL query information
             When query information "https://www.turku.fi/" is entered for field "link"
-            And video query suggestions are accepted
+            And link query suggestions are accepted
             Then a page with text "Lista lukuvinkeistä" is displayed
             And a link to address "https://www.turku.fi/" is shown in the listing
 

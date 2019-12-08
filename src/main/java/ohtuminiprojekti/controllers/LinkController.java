@@ -29,16 +29,16 @@ public class LinkController {
   
   @GetMapping("/link/query")
   public String askLink() {
-      return "linkquery";
+    return "linkquery";
   }
   
   @PostMapping("/link/query")
   public String askLink(RedirectAttributes redirectAttributes, @RequestParam String link) {
-      if(!linkService.isURL(link)) {
-          return "redirect:/link/query?error";
-      }
-      redirectAttributes.addAttribute("url", link);
-      return "redirect:/link/create";
+    if (!linkService.isURL(link)) {
+      return "redirect:/link/query?error";
+    }
+    redirectAttributes.addAttribute("url", link);
+    return "redirect:/link/create";
   }
 
   @GetMapping("/link/edit")

@@ -54,6 +54,13 @@ public class Stepdefs {
     clickLinkWithText("uusi kirjavinkki");
   }
 
+  @Given("user is in a view to enter video query information")
+  public void user_is_in_a_view_to_enter_video_query_information() {
+    driver.get(baseUrl);
+    clickLinkWithText("uusi videovinkki");
+  }
+
+  
   @When("ISBN query suggestions are accepted")
   public void isbn_query_suggestions_are_accepted() {
     WebElement element = driver.findElement(By.name("bookSubmit"));
@@ -68,10 +75,16 @@ public class Stepdefs {
 
   @When("video query suggestions are accepted")
   public void video_query_suggestions_are_accepted() {
-    WebElement element = driver.findElement(By.name("linkSubmit"));
+    WebElement element = driver.findElement(By.name("videoSubmit"));
     element.submit();
   }
 
+  @When("link query suggestions are accepted")
+  public void link_query_suggestions_are_accepted() {
+    WebElement element = driver.findElement(By.name("linkSubmit"));
+    element.submit();
+  }
+  
   @When("nothing is done")
   public void nothing_is_done() {
     // do nothing - temp to for a dummy test

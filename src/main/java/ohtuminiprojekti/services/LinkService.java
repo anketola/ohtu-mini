@@ -31,8 +31,8 @@ public class LinkService {
   
   public boolean isURL(String url) {
     try {
-     (new java.net.URL(url)).openStream().close();
-     return true;
+      (new java.net.URL(url)).openStream().close();
+      return true;
     } catch (Exception ex) { }
     return false;
   }
