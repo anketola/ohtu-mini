@@ -42,6 +42,36 @@ public class Stepdefs {
     driver.get("http://localhost:" + 8080 + "/");
   }
 
+  @Given("user is in a view to enter URL query information")
+  public void user_is_in_a_view_to_enter_URL_query_information() {
+    driver.get(baseUrl);
+    clickLinkWithText("uusi nettivinkki");
+  }
+
+  @Given("user is in a view to enter ISBN query information")
+  public void user_is_in_a_view_to_enter_ISBN_query_information() {
+    driver.get(baseUrl);
+    clickLinkWithText("uusi kirjavinkki");
+  }
+
+  @When("ISBN query suggestions are accepted")
+  public void isbn_query_suggestions_are_accepted() {
+    WebElement element = driver.findElement(By.name("bookSubmit"));
+    element.submit();
+  }
+
+  @When("query information {string} is entered for field {string}")
+  public void query_information_is_entered_for_field(String queryString, String fieldName) throws InterruptedException {
+    enterQueryData(queryString, fieldName);
+    Thread.sleep(300);
+  }
+
+  @When("video query suggestions are accepted")
+  public void video_query_suggestions_are_accepted() {
+    WebElement element = driver.findElement(By.name("linkSubmit"));
+    element.submit();
+  }
+
   @When("nothing is done")
   public void nothing_is_done() {
     // do nothing - temp to for a dummy test
@@ -277,6 +307,13 @@ public class Stepdefs {
     }
   }
 
+  
+  private void enterQueryData(String queryData, String fieldName) {
+    WebElement element = driver.findElement(By.name(fieldName));
+    element.sendKeys(queryData);
+    element.submit();
+  }
+  
   private void enterUrlInformation(String name, String urlstring) {
     WebElement element = driver.findElement(By.name("name"));
     element.sendKeys(name);
