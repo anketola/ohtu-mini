@@ -4,6 +4,8 @@
 
 Helsingin yliopiston tietojenkäsittelytieteen laitoksen syksyn 2019 ohjelmistotuotannon kurssin ryhmäprojektina toteutettava miniprojekti. Asiakkaamme ovat ammattilaisia tietojenkäsittelyn ammattikirjallisuuden lukijoita - onneksi mekin olemme "ammattilaisia".
 
+[Toinen release](https://github.com/anketola/ohtu-mini/releases/tag/v1.0 "Toinen release")
+
 [Ensimmäinen release](https://github.com/anketola/ohtu-mini/releases/tag/0.1 "Ensimmäinen release")
 
 Ryhmä: mergehell - *"Epic Extreme Advanced Agile DevOps since November 2019"*
