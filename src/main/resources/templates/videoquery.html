@@ -11,10 +11,10 @@
                 <div class="col-12">
                     <div class="row" style="margin-top:100px">
                     <div class="col-4"></div>
-                        <div class="col-4">
+                        <div class="col-4 entryContainer">
         
             
-                        <h1 style="text-align: center">Hae videon tiedot</h1>
+                        <h1 class="entryTitle">Hae videon tiedot</h1>
                         <div style="text-align: center">
                             <img src="/video_large.png" alt="book">
                         </div>
@@ -25,7 +25,7 @@
                             Videon tiedot haetaan automaattisesti puolestasi.
                         </p>
 
-                        <form method="POST" th:action="@{/video/query}">
+                        <form method="POST" th:action="@{/video/query}" class="entryForm">
                         <div class="form-group">
                             <label for="nameInputField">URL</label>
                             <input type="text" name="link" id="linkInputField" class="form-control" required>

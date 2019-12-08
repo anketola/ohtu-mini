@@ -7,17 +7,23 @@
         <header th:replace="layout :: header"></header>
         <div class="container-fluid">
             <div class="col-12">
-                <div class="row" style="margin-top:60px">
+                <div class="row" style="margin-top:100px">
                 <div class="col-4"></div>
-                    <div class="col-4">
+                    <div class="col-4 entryContainer">
 
         
-                    <h1>Lisää kirja lukuvinkiksi</h1>
+                    <h1 class="entryTitle">Lisää kirja lukuvinkiksi</h1>
+                    <div style="text-align: center">
+                        <img src="/book_large.png" alt="book">
+                    </div>
+                    <p class="text-muted" style="text-align: center; padding-top: 10px">
+                        Syötä kirjan tiedot alla olevalle lomakkeelle.
+                    </p>
                     <div th:if="${param.error}"  class="alert alert-warning notification" role="alert">
                         <p>Lukuvinkki on jo tallennettu!</p>
                     </div>
         
-                    <form method="POST" th:action="@{/book/create}">
+                    <form method="POST" th:action="@{/book/create}" class="entryForm">
                     <div class="form-group">
                         <label for="nameInputField">Nimi</label>
                         <input type="text" name="title" id="nameInputField" class="form-control" th:value="${title}" required>

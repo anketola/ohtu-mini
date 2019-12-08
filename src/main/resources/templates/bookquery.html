@@ -10,9 +10,9 @@
                 <div class="col-12">
                     <div class="row" style="margin-top:100px">
                     <div class="col-4"></div>
-                        <div class="col-4">
+                        <div class="col-4 entryContainer">
         
-                        <h1 style="text-align: center">Hae kirjan tiedot ISBN:llä</h1>
+                        <h1 class="entryTitle">Hae kirjan tiedot ISBN:llä</h1>
                         <div style="text-align: center">
                             <img src="/book_large.png" alt="book">
                         </div>
@@ -23,7 +23,7 @@
                             <p>Syötä oikea ISBN.</p>
                         </div>
             
-                        <form method="POST" th:action="@{/book/query}">
+                        <form method="POST" th:action="@{/book/query}" class="entryForm">
                             <div class="form-group">
                                 <label for="nameInputField">ISBN</label>
                                 <input type="text" name="isbn" id="linkInputField" class="form-control" required>

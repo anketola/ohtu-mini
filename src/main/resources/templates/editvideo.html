@@ -7,16 +7,22 @@
 <header th:replace="layout :: header"></header>
 <div class="container-fluid">
         <div class="col-12">
-            <div class="row" style="margin-top:60px">
+            <div class="row" style="margin-top:100px">
             <div class="col-4"></div>
-                <div class="col-4">
+                <div class="col-4 entryContainer">
 
-                <h1>Muokkaa videon tietoja</h1>
+                <h1 class="entryTitle">Muokkaa videon tietoja</h1>
+                <div style="text-align: center">
+                    <img src="/video_large.png" alt="book">
+                </div>
+                <p class="text-muted" style="text-align: center; padding-top: 10px">
+                    Syötä videon tiedot alla olevalle lomakkeelle.
+                </p>
                 <div th:if="${param.error}"  class="alert alert-warning notification" role="alert">
                     <p>Vastaava video on jo tallennettu.</p>
                 </div>
     
-                <form method="POST" th:action="@{/video/edit}">
+                <form method="POST" th:action="@{/video/edit}" class="entryForm">
                 <div class="form-group">
                     <label for="nameInputField">Videon nimi</label>
                     <input type="text" name="name" id="nameInputField" class="form-control" th:value="${video.name}" required>

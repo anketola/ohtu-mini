@@ -9,15 +9,20 @@
         <div class="col-12">
             <div class="row" style="margin-top:60px">
             <div class="col-4"></div>
-                <div class="col-4">
+                <div class="col-4 entryContainer">
 
     
-                <h1>Lisää kirja lukuvinkiksi</h1>
+                <h1 class="entryTitle">Lisää kirja lukuvinkiksi</h1>
                 <div th:if="${param.error}"  class="alert alert-warning notification" role="alert">
                     <p>Lukuvinkki on jo tallennettu!</p>
                 </div>
-    
-                <form method="POST" th:action="@{/link/create}">
+                <div style="text-align: center">
+                    <img src="/link_large.png" alt="book">
+                </div>
+                <p class="text-muted" style="text-align: center; padding-top: 10px">
+                    Syötä linkin tiedot alla olevalle lomakkeelle.
+                </p>
+                <form method="POST" th:action="@{/link/create}" class="entryForm">
                 <div class="form-group">
                     <label for="nameInputField">Lukuvinkin nimi</label>
                     <input type="text" name="name" id="nameInputField" class="form-control" th:value="${name}" required>

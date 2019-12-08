@@ -1,0 +1,15 @@
+.entryContainer {
+    background-color:#19181A;
+    padding:20px;
+    border-radius:25px;
+}
+
+.entryForm {
+    font-weight: bold;
+    color:whitesmoke;
+}
+
+.entryTitle {
+    text-align: center;
+    color:beige;
+}
