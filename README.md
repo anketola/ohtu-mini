@@ -8,9 +8,17 @@ Helsingin yliopiston tietojenkäsittelytieteen laitoksen syksyn 2019 ohjelmistot
 
 [Ensimmäinen release](https://github.com/anketola/ohtu-mini/releases/tag/0.1 "Ensimmäinen release")
 
-Ryhmä: mergehell - *"Epic Extreme Advanced Agile DevOps since November 2019"*
-
 [Sovelluslinkki](https://shrouded-oasis-52699.herokuapp.com/ "Sovellus Herokussa")
+
+Ryhmä: mergehell - *"Epic Extreme Advanced Lean Agile DevOps since November 2019"*
+
+#### Ryhmän jäsenet (in alphabetical order):
+
+* Aare
+* Antti
+* Jesse
+* Mikko
+* Santeri
 
 ## Dokumentaatiota
 
