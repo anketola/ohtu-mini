@@ -10,7 +10,7 @@ Helsingin yliopiston tietojenkäsittelytieteen laitoksen syksyn 2019 ohjelmistot
 
 Ryhmä: mergehell - *"Epic Extreme Advanced Agile DevOps since November 2019"*
 
-[Sovelluslinkki](https://secret-ravine-95065.herokuapp.com/ "Sovellus Herokussa")
+[Sovelluslinkki](https://shrouded-oasis-52699.herokuapp.com/ "Sovellus Herokussa")
 
 ## Dokumentaatiota
 
