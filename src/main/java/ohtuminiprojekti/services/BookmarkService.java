@@ -36,7 +36,7 @@ public class BookmarkService {
     bookmarkRepository.deleteById(id);
   }
 
-  public void setBookmarkRead(long id, boolean hasBeenRead) {
+  public void setBookmarkAsRead(long id, boolean hasBeenRead) {
     Bookmark bookmark = bookmarkRepository.getOne(id);
     bookmark.setHasBeenRead(hasBeenRead);
     bookmarkRepository.save(bookmark);

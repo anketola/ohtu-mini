@@ -30,13 +30,13 @@ public class BookmarkController {
 
   @PostMapping("/bookmarks/mark")
   public String markBookmarkAsRead(@RequestParam long id, @RequestParam String url) {
-    bookmarkService.setBookmarkRead(id, true);
+    bookmarkService.setBookmarkAsRead(id, true);
     return Utils.redirectToSameListing(url);
   }
 
   @PostMapping("/bookmarks/unmark")
   public String markBookmarkAsUnread(@RequestParam long id, @RequestParam String url) {
-    bookmarkService.setBookmarkRead(id, false);
+    bookmarkService.setBookmarkAsRead(id, false);
     return Utils.redirectToSameListing(url);
   }
 
