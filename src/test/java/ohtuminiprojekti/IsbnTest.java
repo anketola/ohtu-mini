@@ -19,10 +19,10 @@ public class IsbnTest {
   //  Assert.assertEquals("9780201896831 The Art of Computer Programming: Fundamental algorithms Donald Ervin Knuth http://books.google.com/books/content?id=5oJQAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api", isbn.toString());
   //}
 
-  @Test
-  public void noThumbnailTest() {
-    Assert.assertEquals("8385568034 Koniec i początek Wisława Szymborska null", new Isbn("8385568034").toString());
-  }
+  //@Test
+  //public void noThumbnailTest() {
+  //  Assert.assertEquals("8385568034 Koniec i początek Wisława Szymborska null", new Isbn("8385568034").toString());
+  //}
 
   @Test
   public void multipleAuthorsTest() {
