@@ -22,6 +22,8 @@ Ryhmä: mergehell - *"Epic Extreme Advanced Lean Agile DevOps since November 201
 
 ## Dokumentaatiota
 
+[Loppuraportti](https://helsinkifi-my.sharepoint.com/:w:/g/personal/aketola_ad_helsinki_fi/EQmZcCzQnw1IqXEBG65r9gsB5aTHT0muyMlm8-jP3T8feg?e=8Lh8xZ "Loppuraportti")
+
 [Definition of Done](https://docs.google.com/document/d/11sFet8RXvsOuduLlZrJaglBEncGL8m9L9uRJw0mcQMA/edit "Definition of Done")
 
 [Product ja sprint backlogit](https://docs.google.com/spreadsheets/d/1w9VKrFW_TY9B6ujOGc0o4PbNxNm2tUUOI-F3fBlMWJo/edit?usp=sharing "Backlogit")
